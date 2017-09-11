@@ -1,0 +1,72 @@
+spring:
+    application:
+        name: admin-gate
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: NON_NULL
+    redis:
+        database: 1
+        host: 192.168.171.128
+        pool:
+            max-active: 20
+server:
+    port: 80 #启动端口
+#
+zuul:
+  routes:
+    back:
+      path: /back/**
+      serviceId: admin-back
+
+    ui:
+      path: /admin/**
+      serviceId: admin-ui
+
+    blog:
+      path: /blog/**
+      serviceId: blog-admin
+
+ribbon:
+  eureka:
+    enabled: true #开启动态网关服务发现
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        leaseRenewalIntervalInSeconds: 1
+        leaseExpirationDurationInSeconds: 2
+        preferIpAddress: true
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+#            defaultZone: http://center:8761/eureka/
+security:
+    user:
+        name: admin
+        password: admin
+        role: USER
+
+#gate:
+#    client: 
+#        authHeader: access-token
+#        authHost: http://localhost:80/apiauth
+#    ignore:
+#        startWith: /static,/admin,/index,/about
+#        contain: .
+#    oauth:
+#        prefix: /api
+#
+#    api:
+#        header: access-token  #http 请求头key
+#        secret: mySecret   #jwt 加密密钥
+#        expiration: 60  # 过期秒数
+#        tokenHead: ApiGateToken # 认证token前缀
