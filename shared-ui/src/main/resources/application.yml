@@ -1,0 +1,53 @@
+spring:
+    application:
+        name: admin-ui
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: NON_NULL
+
+server:
+    port: 8766
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        leaseRenewalIntervalInSeconds: 1
+        leaseExpirationDurationInSeconds: 2
+        preferIpAddress: true
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+#            defaultZone: http://center:8761/eureka/
+
+back:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+
+#只有调用开启了@ApiGateSecurity的api接口时才需要
+gate:
+  client:
+    clientId: admin-ui
+    secret: test
+    tokenHead: ApiGateToken
+  api: 
+    authHost: http://localhost:80/apiauth
+    authHeader: access-token
+    
