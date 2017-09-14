@@ -15,7 +15,7 @@
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/ag_admin?useUnicode=true&amp;characterEncoding=UTF8"
+                        connectionURL="jdbc:mysql://localhost:3306/shared_admin?useUnicode=true&amp;characterEncoding=UTF8"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -44,7 +44,7 @@
         <!--</table>-->
         <!--<table tableName="gate_client" domainObjectName="GateClient">-->
         <!--</table>-->
-        <table tableName="gate_log_copy" domainObjectName="GateLogCopy">
+        <table tableName="base_form" domainObjectName="Form">
         </table>
     </context>
 </generatorConfiguration>

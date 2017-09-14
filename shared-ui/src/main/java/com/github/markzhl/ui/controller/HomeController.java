@@ -95,5 +95,21 @@ public class HomeController extends BaseController{
     public String service(){
         return "service/list";
     }
+    
+    @RequestMapping(value = "form",method = RequestMethod.GET)
+    public String form(){
+        return "form/list";
+    }
+    
+    @RequestMapping(value = "form/design",method = RequestMethod.GET)
+    public String design(){
+        return "form/design";
+    }
+    @RequestMapping(value="form/edit",method = RequestMethod.GET)
+    public String formEdit(){
+        return "form/edit";
+    }
+    
+    
 
 }

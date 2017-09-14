@@ -61,11 +61,12 @@ public class UserService {
     }
     
     public UserInfo getUserByUsernameError(String username){
-		log.error("根据username获取UserInfo失败。username={}",username);
+		log.error("调用getUserByUsername失败。参数：username={}",username);
 		return new UserInfo();
 	}
     
     @RequestMapping(value = "/permissions", method = RequestMethod.GET)
+    @HystrixCommand(fallbackMethod = "getAllPermissionError")
     public @ResponseBody List<PermissionInfo> getAllPermission(){
         List<Menu> menus = menuBiz.selectListAll();
         List<PermissionInfo> result = new ArrayList<PermissionInfo>();
@@ -75,6 +76,11 @@ public class UserService {
         element2permission(result, elements);
         return result;
     }
+    
+    public List<PermissionInfo> getAllPermissionError(){
+		log.error("调用getAllPermission失败。");
+		return new ArrayList<PermissionInfo>();
+	}
 
     private void menu2permission(List<Menu> menus, List<PermissionInfo> result) {
         PermissionInfo info;
@@ -97,6 +103,7 @@ public class UserService {
     }
 
     @RequestMapping(value = "/user/un/{username}/permissions", method = RequestMethod.GET)
+    @HystrixCommand(fallbackMethod = "getPermissionByUsernameError")
     public @ResponseBody List<PermissionInfo> getPermissionByUsername(@PathVariable("username") String username){
         User user = userBiz.getUserByUsername(username);
         List<Menu> menus = menuBiz.getUserAuthorityMenuByUserId(user.getId());
@@ -106,6 +113,11 @@ public class UserService {
         List<Element> elements = elementBiz.getAuthorityElementByUserId(user.getId()+"");
         element2permission(result, elements);
         return result;
+    }
+    
+    public List<PermissionInfo> getPermissionByUsernameError(String username){
+    	log.error("调用getPermissionByUsername失败。参数：username={}", username);
+    	return new ArrayList<PermissionInfo>();
     }
 
     private void element2permission(List<PermissionInfo> result, List<Element> elements) {
@@ -124,13 +136,20 @@ public class UserService {
 
     @RequestMapping(value = "/user/un/{username}/system", method = RequestMethod.GET)
     @ResponseBody
+    @HystrixCommand(fallbackMethod = "getSystemsByUsernameError")
     public String getSystemsByUsername(@PathVariable("username") String username){
         int userId = userBiz.getUserByUsername(username).getId();
         return JSONObject.toJSONString(menuBiz.getUserAuthoritySystemByUserId(userId));
     }
     
+    public String getSystemsByUsernameError(String username){
+    	log.error("调用getSystemsByUsername失败。参数：username={}", username);
+    	return JSONObject.toJSONString(new ArrayList<Menu>());
+    }
+    
     @RequestMapping(value = "/user/un/{username}/menu/parent/{parentId}", method = RequestMethod.GET)
     @ResponseBody
+    @HystrixCommand(fallbackMethod = "getMenusByUsernameError")
     public String getMenusByUsername(@PathVariable("username") String username,@PathVariable("parentId")Integer parentId){
         int userId = userBiz.getUserByUsername(username).getId();
         try {
@@ -141,6 +160,11 @@ public class UserService {
             return JSONObject.toJSONString(new ArrayList<MenuTree>());
         }
         return JSONObject.toJSONString(getMenuTree(menuBiz.getUserAuthorityMenuByUserId(userId), parentId));
+    }
+    
+    public String getMenusByUsernameError(String username, Integer parentId){
+    	log.error("调用getMenusByUsername失败。参数：username={}，parentId={}", username, parentId);
+    	return JSONObject.toJSONString(new ArrayList<Menu>());
     }
     
     @RequestMapping(value = "/user/un/{username}/pw/{pasword}/match", method = RequestMethod.GET)

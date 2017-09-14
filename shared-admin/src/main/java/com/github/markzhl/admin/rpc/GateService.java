@@ -61,6 +61,7 @@ public class GateService {
 	
 	
 	@RequestMapping(value = "/gate/permissions", method = RequestMethod.GET)
+	@HystrixCommand(fallbackMethod = "getGateServiceInfoError")
 	public @ResponseBody List<PermissionInfo> getGateServiceInfo() {
 		List<PermissionInfo> infos = new ArrayList<PermissionInfo>();
 		Example example = new Example(Element.class);
@@ -69,8 +70,15 @@ public class GateService {
 		convert(infos, elements);
 		return infos;
 	}
+	
+	public List<PermissionInfo> getGateServiceInfoError(){
+		log.error("调用getGateServiceInfo失败。");
+		return new ArrayList<PermissionInfo>();
+	}
+	
 
 	@RequestMapping(value = "/gate/ci/{clientid}/permissions", method = RequestMethod.GET)
+	@HystrixCommand(fallbackMethod = "getGateServiceInfoError")
 	public @ResponseBody List<PermissionInfo> getGateServiceInfo(@PathVariable("clientid") String clientid) {
 		GateClient gateClient = new GateClient();
 		gateClient.setCode(clientid);
@@ -79,6 +87,11 @@ public class GateService {
 		List<Element> elements = gateClientBiz.getClientServices(gateClient.getId());
 		convert(infos, elements);
 		return infos;
+	}
+	
+	public List<PermissionInfo> getGateServiceInfoError(String clientid) {
+		log.error("调用getGateServiceInfo失败。参数：clientid={}", clientid);
+		return new ArrayList<PermissionInfo>();
 	}
 
 	private void convert(List<PermissionInfo> infos, List<Element> elements) {
