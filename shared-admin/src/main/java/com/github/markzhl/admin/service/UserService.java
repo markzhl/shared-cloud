@@ -1,12 +1,12 @@
-package com.github.markzhl.admin.biz;
+package com.github.markzhl.admin.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.github.markzhl.admin.entity.User;
 import com.github.markzhl.admin.mapper.UserMapper;
-import com.github.markzhl.common.biz.BaseBiz;
 import com.github.markzhl.common.constant.UserConstant;
+import com.github.markzhl.common.service.BaseService;
 
 /**
  * 
@@ -15,7 +15,7 @@ import com.github.markzhl.common.constant.UserConstant;
  * @create 2017-06-08 16:23
  */
 @Service
-public class UserBiz extends BaseBiz<UserMapper,User> {
+public class UserService extends BaseService<UserMapper,User> {
 
     @Override
     public void insertSelective(User entity) {

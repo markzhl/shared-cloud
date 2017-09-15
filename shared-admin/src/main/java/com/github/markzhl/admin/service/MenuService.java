@@ -1,9 +1,9 @@
-package com.github.markzhl.admin.biz;
+package com.github.markzhl.admin.service;
 
 import com.github.markzhl.admin.constant.CommonConstant;
 import com.github.markzhl.admin.entity.Menu;
 import com.github.markzhl.admin.mapper.MenuMapper;
-import com.github.markzhl.common.biz.BaseBiz;
+import com.github.markzhl.common.service.BaseService;
 
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * @create 2017-06-12 8:48
  */
 @Service
-public class MenuBiz extends BaseBiz<MenuMapper,Menu> {
+public class MenuService extends BaseService<MenuMapper,Menu> {
     @Override
     public void insertSelective(Menu entity) {
         if(CommonConstant.ROOT == entity.getParentId()){

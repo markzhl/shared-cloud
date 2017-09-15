@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.markzhl.admin.biz.GroupTypeBiz;
 import com.github.markzhl.admin.entity.GroupType;
+import com.github.markzhl.admin.service.GroupTypeService;
 import com.github.markzhl.common.msg.TableResultResponse;
 import com.github.markzhl.common.rest.BaseController;
 import com.github.pagehelper.PageHelper;
@@ -22,7 +22,7 @@ import tk.mybatis.mapper.entity.Example;
  */
 @Controller
 @RequestMapping("groupType")
-public class GroupTypeController extends BaseController<GroupTypeBiz,GroupType> {
+public class GroupTypeController extends BaseController<GroupTypeService,GroupType> {
 
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     @ResponseBody
@@ -30,9 +30,9 @@ public class GroupTypeController extends BaseController<GroupTypeBiz,GroupType> 
         Example example = new Example(GroupType.class);
         if(StringUtils.isNotBlank(name))
             example.createCriteria().andLike("name", "%" + name + "%");
-        int count = baseBiz.selectCountByExample(example);
+        int count = baseService.selectCountByExample(example);
         PageHelper.startPage(offset, limit);
-        return new TableResultResponse<GroupType>(count,baseBiz.selectByExample(example));
+        return new TableResultResponse<GroupType>(count,baseService.selectByExample(example));
     }
 
 }

@@ -30,6 +30,11 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    redis:
+        database: 0
+        host: 172.20.97.63
+        pool:
+            max-active: 20
 mybatis:
     basepackage: com.github.markzhl.admin.mapper
     xmlLocation: classpath:mapper/**/*.xml
@@ -61,3 +66,5 @@ swagger:
         name: Admin Back
         description: Admin Back后端服务
         developer: 老A
+
+

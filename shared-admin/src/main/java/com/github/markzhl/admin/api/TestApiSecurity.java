@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.markzhl.admin.biz.UserBiz;
 import com.github.markzhl.admin.entity.User;
+import com.github.markzhl.admin.service.UserService;
 import com.github.markzhl.api.vo.user.UserInfo;
 import com.github.markzhl.gate.agent.rest.ApiGateSecurity;
 
@@ -20,12 +20,12 @@ import com.github.markzhl.gate.agent.rest.ApiGateSecurity;
 @ApiGateSecurity
 public class TestApiSecurity {
     @Autowired
-    private UserBiz userBiz;
+    private UserService userService;
     
     @RequestMapping(value = "/user/usernameforapi/{username}",method = RequestMethod.GET, produces="application/json")
     public  @ResponseBody UserInfo getUserByUsernameForApi(@PathVariable("username")String username) {
         UserInfo info = new UserInfo();
-        User user = userBiz.getUserByUsername(username);
+        User user = userService.getUserByUsername(username);
         assertNotNull(user);
         BeanUtils.copyProperties(user,info);
         info.setId(user.getId().toString());

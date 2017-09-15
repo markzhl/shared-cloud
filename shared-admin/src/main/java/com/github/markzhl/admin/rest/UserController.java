@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.markzhl.admin.biz.UserBiz;
 import com.github.markzhl.admin.entity.User;
+import com.github.markzhl.admin.service.UserService;
 import com.github.markzhl.common.msg.TableResultResponse;
 import com.github.markzhl.common.rest.BaseController;
 import com.github.pagehelper.PageHelper;
@@ -23,7 +23,7 @@ import tk.mybatis.mapper.entity.Example;
  */
 @Controller
 @RequestMapping("user")
-public class UserController extends BaseController<UserBiz,User> {
+public class UserController extends BaseController<UserService,User> {
 
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     @ResponseBody
@@ -33,9 +33,9 @@ public class UserController extends BaseController<UserBiz,User> {
             example.createCriteria().andLike("name", "%" + name + "%");
             example.createCriteria().andLike("username", "%" + name + "%");
         }
-        int count = baseBiz.selectCountByExample(example);
+        int count = baseService.selectCountByExample(example);
         PageHelper.startPage(offset, limit);
-        return new TableResultResponse<User>(count,baseBiz.selectByExample(example));
+        return new TableResultResponse<User>(count,baseService.selectByExample(example));
     }
 
 

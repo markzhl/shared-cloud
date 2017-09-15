@@ -1,4 +1,4 @@
-package com.github.markzhl.admin.rpc;
+package com.github.markzhl.admin.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.markzhl.admin.biz.ElementBiz;
-import com.github.markzhl.admin.biz.GateClientBiz;
 import com.github.markzhl.admin.constant.CommonConstant;
 import com.github.markzhl.admin.entity.Element;
 import com.github.markzhl.admin.entity.GateClient;
+import com.github.markzhl.admin.service.ElementService;
+import com.github.markzhl.admin.service.GateClientService;
 import com.github.markzhl.api.vo.authority.PermissionInfo;
 import com.github.markzhl.api.vo.gate.ClientInfo;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -33,11 +33,11 @@ import tk.mybatis.mapper.entity.Example;
 @Controller
 @RequestMapping("api")
 @Slf4j
-public class GateService {
+public class GateServiceApi {
 	@Autowired
-	private GateClientBiz gateClientBiz;
+	private GateClientService gateClientService;
 	@Autowired
-	private ElementBiz elmentBiz;
+	private ElementService elmentService;
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
 	@RequestMapping(value = "/gate/clientid/{clientid}",method = RequestMethod.GET, produces="application/json")
@@ -46,7 +46,7 @@ public class GateService {
 		Example example = new Example(GateClient.class);
 		example.createCriteria().andEqualTo("code", clientid);
 		ClientInfo info = new ClientInfo();
-		GateClient gateClient = gateClientBiz.selectByExample(example).get(0);
+		GateClient gateClient = gateClientService.selectByExample(example).get(0);
 		BeanUtils.copyProperties(gateClient, info);
 		info.setLocked(CommonConstant.BOOLEAN_NUMBER_TRUE.equals(gateClient.getLocked()));
 //		info.setSecret(encoder.encode(info.getSecret()));
@@ -66,7 +66,7 @@ public class GateService {
 		List<PermissionInfo> infos = new ArrayList<PermissionInfo>();
 		Example example = new Example(Element.class);
 		example.createCriteria().andEqualTo("menuId", "-1");
-		List<Element> elements = elmentBiz.selectByExample(example);
+		List<Element> elements = elmentService.selectByExample(example);
 		convert(infos, elements);
 		return infos;
 	}
@@ -82,9 +82,9 @@ public class GateService {
 	public @ResponseBody List<PermissionInfo> getGateServiceInfo(@PathVariable("clientid") String clientid) {
 		GateClient gateClient = new GateClient();
 		gateClient.setCode(clientid);
-		gateClient = gateClientBiz.selectOne(gateClient);
+		gateClient = gateClientService.selectOne(gateClient);
 		List<PermissionInfo> infos = new ArrayList<PermissionInfo>();
-		List<Element> elements = gateClientBiz.getClientServices(gateClient.getId());
+		List<Element> elements = gateClientService.getClientServices(gateClient.getId());
 		convert(infos, elements);
 		return infos;
 	}

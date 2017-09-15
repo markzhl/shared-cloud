@@ -15,7 +15,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @EnableEurekaClient
 @EnableFeignClients
 @EnableDiscoveryClient
-@ServletComponentScan
+@ServletComponentScan("com.github.markzhl.ui.ueditor")
 public class UIBootstrap {
     public static void main(String[] args) {
         new SpringApplicationBuilder(UIBootstrap.class).web(true).run(args);    }

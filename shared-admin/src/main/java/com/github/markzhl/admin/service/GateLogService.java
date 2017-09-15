@@ -1,8 +1,8 @@
-package com.github.markzhl.admin.biz;
+package com.github.markzhl.admin.service;
 
 import com.github.markzhl.admin.entity.GateLog;
 import com.github.markzhl.admin.mapper.GateLogMapper;
-import com.github.markzhl.common.biz.BaseBiz;
+import com.github.markzhl.common.service.BaseService;
 
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @create 2017-07-01 14:36
  */
 @Service
-public class GateLogBiz extends BaseBiz<GateLogMapper,GateLog> {
+public class GateLogService extends BaseService<GateLogMapper,GateLog> {
 
     @Override
     public void insert(GateLog entity) {

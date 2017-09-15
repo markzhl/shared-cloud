@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.markzhl.admin.biz.GateLogBiz;
 import com.github.markzhl.admin.entity.GateLog;
+import com.github.markzhl.admin.service.GateLogService;
 import com.github.markzhl.common.msg.TableResultResponse;
 import com.github.markzhl.common.rest.BaseController;
 import com.github.pagehelper.PageHelper;
@@ -23,7 +23,7 @@ import tk.mybatis.mapper.entity.Example;
  */
 @Controller
 @RequestMapping("gateLog")
-public class GateLogController extends BaseController<GateLogBiz,GateLog> {
+public class GateLogController extends BaseController<GateLogService,GateLog> {
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     @ResponseBody
     public TableResultResponse<GateLog> page(@RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "1")int offset, String name){
@@ -31,8 +31,8 @@ public class GateLogController extends BaseController<GateLogBiz,GateLog> {
         if(StringUtils.isNotBlank(name)) {
             example.createCriteria().andLike("menu", "%" + name + "%");
         }
-        int count = baseBiz.selectCountByExample(example);
+        int count = baseService.selectCountByExample(example);
         PageHelper.startPage(offset, limit);
-        return new TableResultResponse<GateLog>(count,baseBiz.selectByExample(example));
+        return new TableResultResponse<GateLog>(count,baseService.selectByExample(example));
     }
 }

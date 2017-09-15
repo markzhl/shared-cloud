@@ -2,126 +2,106 @@ package com.github.markzhl.common.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.github.markzhl.common.util.EntityUtils;
+
+import tk.mybatis.mapper.common.Mapper;
+
 /**
- * 
- *
- * @author mark
- * @create 2017-06-08 16:26
+ * Created by zhw
+ * Date: 17/1/13
+ * Time: 15:13
+ * Version 1.0.0
  */
-public interface BaseService<T> {
-    /**
-     * 查询
-     *
-     * @param entity
-     * @return
-     */
-    T selectOne(T entity);
+public abstract class BaseService<M extends Mapper<T>, T> {
+    @Autowired
+    protected M mapper;
+    public void setMapper(M mapper){
+        this.mapper = mapper;
+    }
+    
+    
+    public T selectOne(T entity) {
+        return mapper.selectOne(entity);
+    }
 
-    /**
-     * 通过Id查询
-     *
-     * @param id
-     * @return
-     */
-    T selectById(Object id);
-
-    /**
-     * 根据ID集合来查询
-     *
-     * @param ids
-     * @return
-     */
-//    List<T> selectListByIds(List<Object> ids);
-
-    /**
-     * 查询列表
-     *
-     * @param entity
-     * @return
-     */
-    List<T> selectList(T entity);
+    public T selectById(Object id) {
+        return mapper.selectByPrimaryKey(id);
+    }
 
 
-    /**
-     * 获取所有对象
-     *
-     * @return
-     */
-    List<T> selectListAll();
+//    public List<T> selectListByIds(List<Object> ids) {
+//        return mapper.selectByIds(ids);
+//    }
 
 
-    /**
-     * 查询总记录数
-     *
-     * @return
-     */
-//    Long selectCountAll();
-
-    /**
-     * 查询总记录数
-     *
-     * @param entity
-     * @return
-     */
-    Long selectCount(T entity);
-
-    /**
-     * 添加
-     *
-     * @param entity
-     */
-    void insert(T entity);
+    public List<T> selectList(T entity) {
+        return mapper.select(entity);
+    }
 
 
-    /**
-     * 插入 不插入null字段
-     *
-     * @param entity
-     */
-    void insertSelective(T entity);
-
-    /**
-     * 删除
-     *
-     * @param entity
-     */
-    void delete(T entity);
-
-    /**
-     * 根据Id删除
-     *
-     * @param id
-     */
-    void deleteById(Object id);
+    public List<T> selectListAll() {
+        return mapper.selectAll();
+    }
 
 
-    /**
-     * 根据id更新
-     *
-     * @param entity
-     */
-    void updateById(T entity);
+//    public Long selectCountAll() {
+//        return mapper.selectCount(null);
+//    }
 
 
-    /**
-     * 不update null
-     *
-     * @param entity
-     */
-    void updateSelectiveById(T entity);
-
-    /**
-     * 根据ID集合批量删除
-     *
-     * @param ids
-     */
-//    void deleteBatchByIds(List<Object> ids);
+    public Long selectCount(T entity) {
+        return new Long(mapper.selectCount(entity));
+    }
 
 
-    /**
-     * 批量更新
-     *
-     * @param entitys
-     */
-//    void updateBatch(List<T> entitys);
+    public void insert(T entity) {
+        EntityUtils.setCreatAndUpdatInfo(entity);
+        mapper.insert(entity);
+    }
+
+
+    public void insertSelective(T entity) {
+        EntityUtils.setCreateInfo(entity);
+        mapper.insertSelective(entity);
+    }
+
+
+    public void delete(T entity) {
+        mapper.delete(entity);
+    }
+
+
+    public void deleteById(Object id) {
+        mapper.deleteByPrimaryKey(id);
+    }
+
+
+    public void updateById(T entity) {
+        EntityUtils.setUpdatedInfo(entity);
+        mapper.updateByPrimaryKey(entity);
+    }
+
+
+    public void updateSelectiveById(T entity) {
+        EntityUtils.setUpdatedInfo(entity);
+        mapper.updateByPrimaryKeySelective(entity);
+
+    }
+    public  List<T> selectByExample(Object example){
+        return mapper.selectByExample(example);
+    }
+    public int selectCountByExample(Object example){
+        return mapper.selectCountByExample(example);
+    }
+//    public void deleteBatchByIds(List<Object> ids) {
+//        mapper.batchDeleteByIds(ids);
+//    }
+
+
+//    public void updateBatch(List<T> entitys) {
+//        mapper.batchUpdate(entitys);
+//    }
+
 }

@@ -1,4 +1,4 @@
-package com.github.markzhl.admin.rpc;
+package com.github.markzhl.admin.api;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.markzhl.admin.biz.GateLogBiz;
 import com.github.markzhl.admin.entity.GateLog;
+import com.github.markzhl.admin.service.GateLogService;
 import com.github.markzhl.api.vo.log.LogInfo;
 
 /**
@@ -20,13 +20,13 @@ import com.github.markzhl.api.vo.log.LogInfo;
  */
 @RequestMapping("api")
 @Controller
-public class LogService {
+public class LogServiceApi {
     @Autowired
-    private GateLogBiz gateLogBiz;
+    private GateLogService gateLogService;
     @RequestMapping(value="/log/save",method = RequestMethod.POST)
     public @ResponseBody void saveLog(@RequestBody LogInfo info){
         GateLog log = new GateLog();
         BeanUtils.copyProperties(info,log);
-        gateLogBiz.insertSelective(log);
+        gateLogService.insertSelective(log);
     }
 }

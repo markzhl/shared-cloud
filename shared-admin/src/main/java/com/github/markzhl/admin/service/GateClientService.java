@@ -1,4 +1,4 @@
-package com.github.markzhl.admin.biz;
+package com.github.markzhl.admin.service;
 
 
 import java.util.List;
@@ -13,8 +13,8 @@ import com.github.markzhl.admin.entity.Element;
 import com.github.markzhl.admin.entity.GateClient;
 import com.github.markzhl.admin.mapper.ElementMapper;
 import com.github.markzhl.admin.mapper.GateClientMapper;
-import com.github.markzhl.common.biz.BaseBiz;
 import com.github.markzhl.common.constant.UserConstant;
+import com.github.markzhl.common.service.BaseService;
 
 /**
  * 
@@ -23,7 +23,7 @@ import com.github.markzhl.common.constant.UserConstant;
  * @create 2017-06-29 15:58
  */
 @Service
-public class GateClientBiz extends BaseBiz<GateClientMapper,GateClient> {
+public class GateClientService extends BaseService<GateClientMapper,GateClient> {
     @Autowired
     private ElementMapper elementMapper;
     @Override

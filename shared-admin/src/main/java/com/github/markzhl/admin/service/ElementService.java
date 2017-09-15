@@ -1,12 +1,12 @@
-package com.github.markzhl.admin.biz;
+package com.github.markzhl.admin.service;
 
-import com.github.markzhl.admin.entity.Element;
-import com.github.markzhl.admin.mapper.ElementMapper;
-import com.github.markzhl.common.biz.BaseBiz;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.github.markzhl.admin.entity.Element;
+import com.github.markzhl.admin.mapper.ElementMapper;
+import com.github.markzhl.common.service.BaseService;
 
 /**
  * 
@@ -15,7 +15,7 @@ import java.util.List;
  * @create 2017-06-23 20:27
  */
 @Service
-public class ElementBiz extends BaseBiz<ElementMapper,Element> {
+public class ElementService extends BaseService<ElementMapper,Element> {
     public List<Element> getAuthorityElementByUserId(String userId){
        return mapper.selectAuthorityElementByUserId(userId);
     }

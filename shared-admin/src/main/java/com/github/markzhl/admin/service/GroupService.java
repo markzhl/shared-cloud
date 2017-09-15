@@ -1,4 +1,4 @@
-package com.github.markzhl.admin.biz;
+package com.github.markzhl.admin.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import com.github.markzhl.admin.mapper.ResourceAuthorityMapper;
 import com.github.markzhl.admin.mapper.UserMapper;
 import com.github.markzhl.admin.vo.AuthorityMenuTree;
 import com.github.markzhl.admin.vo.GroupUsers;
-import com.github.markzhl.common.biz.BaseBiz;
+import com.github.markzhl.common.service.BaseService;
 
 /**
  * 
@@ -27,7 +27,7 @@ import com.github.markzhl.common.biz.BaseBiz;
  * @create 2017-06-12 8:48
  */
 @Service
-public class GroupBiz extends BaseBiz<GroupMapper,Group>{
+public class GroupService extends BaseService<GroupMapper,Group>{
     @Autowired
     private UserMapper userMapper;
     @Autowired
