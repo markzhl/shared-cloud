@@ -261,8 +261,8 @@ layui.use(['form', 'layedit', 'laydate'], function () {
                                 toolleipi:true,//是否显示，设计器的 toolbars
                                 textarea: 'design_content',   
                                 //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
-                               toolbars:[[
-                                'fullscreen', 'source', '|', 'undo', 'redo', '|','bold', 'italic', 'underline', 'fontborder', 'strikethrough',  'removeformat', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist','|', 'fontfamily', 'fontsize', '|', 'indent', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',  'link', 'unlink',  '|',  'horizontal',  'spechars',  'wordimage', '|', 'inserttable', 'deletetable',  'mergecells',  'splittocells']],
+                                toolbars:[[
+                                'fullscreen', 'source', '|', 'undo', 'redo', '|','bold', 'italic', 'underline', 'fontborder', 'strikethrough',  'removeformat', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist','|', 'fontfamily', 'fontsize', '|', 'indent', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',  'link', 'unlink',  '|',  'horizontal',  'spechars',  'wordimage', '|', 'inserttable', 'deletetable',  'mergecells',  'splittocells', '|']],
                                 //focus时自动清空初始化时的内容
                                 //autoClearinitialContent:true,
                                 //关闭字数统计
@@ -270,8 +270,8 @@ layui.use(['form', 'layedit', 'laydate'], function () {
                                 //关闭elementPath
                                 elementPathEnabled:false,
                                 //默认的编辑区域高度
-                                initialFrameHeight:300
-                                //,iframeCssUrl:"css/bootstrap/css/bootstrap.css" //引入自身 css使编辑器兼容你网站css
+                                initialFrameHeight: 750
+                                ,iframeCssUrl:"css/bootstrap.min.css" //引入自身 css使编辑器兼容你网站css
                                 //更多其他参数，请参考ueditor.config.js中的配置项
                             });
 		                    leipiFormDesign = {
