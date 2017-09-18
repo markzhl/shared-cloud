@@ -6,7 +6,6 @@ import java.io.Serializable;
  * 
  *
  * @author mark
- * @create 2017-06-22 15:19
  */
 public class PermissionInfo implements Serializable{
     /**

@@ -15,7 +15,6 @@ import com.github.markzhl.gate.service.GateUserDetailsService;
  * 
  *
  * @author mark
- * @create 2017-06-02 12:02
  */
 @Configuration
 @EnableWebSecurity

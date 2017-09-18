@@ -24,7 +24,6 @@ import tk.mybatis.mapper.entity.Example;
  * 
  *
  * @author mark
- * @create 2017-06-29 15:58
  */
 @Controller
 @RequestMapping("client")

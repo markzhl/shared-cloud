@@ -12,7 +12,6 @@ import java.util.List;
  * 
  *
  * @author mark
- * @create 2017-06-19 13:03
  */
 public class AuthorityMenuTree extends TreeNode implements Serializable{
     String text;

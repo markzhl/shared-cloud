@@ -1,7 +1,8 @@
 package com.github.markzhl.common.msg;
 
 /**
- * Created by mark on 2017/6/11.
+ * 
+ * @author mark
  */
 public class ObjectRestResponse<T> {
     boolean rel;

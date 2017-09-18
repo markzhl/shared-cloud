@@ -4,7 +4,6 @@ package com.github.markzhl.common.bean;
  * 
  *
  * @author mark
- * @create 2017-06-08 17:31
  */
 public class Page {
     int num;

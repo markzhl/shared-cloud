@@ -9,7 +9,6 @@ import org.springframework.session.data.redis.config.ConfigureRedisAction;
  * 
  *
  * @author mark
- * @create 2017-06-23 8:33
  */
 @Configuration
 public class SessionConfig {

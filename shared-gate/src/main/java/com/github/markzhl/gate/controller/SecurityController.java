@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 
  *
  * @author mark
- * @create 2017-06-02 13:43
  */
 @Controller
 public class SecurityController {

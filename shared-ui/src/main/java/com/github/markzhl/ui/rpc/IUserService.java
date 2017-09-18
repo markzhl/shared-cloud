@@ -13,7 +13,6 @@ import com.github.markzhl.api.vo.user.UserInfo;
  * 
  *
  * @author mark
- * @create 2017-06-21 8:11
  */
 @FeignClient("admin-back")
 @RequestMapping("api")

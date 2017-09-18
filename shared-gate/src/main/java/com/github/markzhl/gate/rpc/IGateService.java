@@ -15,7 +15,6 @@ import com.github.markzhl.api.vo.gate.ClientInfo;
  * 
  *
  * @author mark
- * @create 2017-07-02 19:23
  */
 @FeignClient("admin-back")
 @RequestMapping("api")

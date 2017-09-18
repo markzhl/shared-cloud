@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
  * 
  *
  * @author mark
- * @create 2017-06-20 21:34
  */
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns = "/druid/*",

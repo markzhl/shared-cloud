@@ -14,7 +14,6 @@ import java.util.concurrent.LinkedBlockingQueue;
  * 
  *
  * @author mark
- * @create 2017-07-01 15:28
  */
 @Slf4j
 public class DBLog extends Thread {

@@ -8,7 +8,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.github.markzhl.gate.agent.rest.ApiInterceptor;
 
 /**
- * Created by mark on 2017/7/6.
+ * 
+ * @author mark
  */
 @Configuration
 public class ApiWebAppConfig extends WebMvcConfigurerAdapter {

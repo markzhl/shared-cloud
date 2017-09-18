@@ -15,7 +15,7 @@ import jodd.http.HttpResponse;
 
 /**
  * api权限拦截器
- * Created by mark on 2017/7/6.
+ * @author mark
  */
 public class ApiInterceptor extends HandlerInterceptorAdapter {
     private String authHost;

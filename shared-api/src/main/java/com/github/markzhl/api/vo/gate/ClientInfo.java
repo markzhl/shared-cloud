@@ -7,7 +7,6 @@ import java.util.Date;
  * 
  *
  * @author mark
- * @create 2017-07-02 19:11
  */
 public class ClientInfo implements Serializable{
     /**

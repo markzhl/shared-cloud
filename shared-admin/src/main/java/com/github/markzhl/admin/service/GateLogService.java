@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
  * 
  *
  * @author mark
- * @create 2017-07-01 14:36
  */
 @Service
 public class GateLogService extends BaseService<GateLogMapper,GateLog> {

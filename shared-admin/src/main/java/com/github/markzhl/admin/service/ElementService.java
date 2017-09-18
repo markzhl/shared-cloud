@@ -12,7 +12,6 @@ import com.github.markzhl.common.service.BaseService;
  * 
  *
  * @author mark
- * @create 2017-06-23 20:27
  */
 @Service
 public class ElementService extends BaseService<ElementMapper,Element> {

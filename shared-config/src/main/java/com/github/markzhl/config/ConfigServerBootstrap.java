@@ -6,7 +6,8 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;
 /**
- * Created by mark on 2017/7/29.
+ * 
+ * @author mark
  */
 @Configuration
 @EnableAutoConfiguration

@@ -6,7 +6,8 @@ import java.util.List;
 import com.github.markzhl.common.vo.TreeNode;
 
 /**
- * Created by mark on 2017/6/12.
+ * 
+ * @author mark
  */
 public class TreeUtil{
   /**

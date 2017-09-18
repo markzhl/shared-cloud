@@ -4,7 +4,6 @@ package com.github.markzhl.admin.constant;
  * 
  *
  * @author mark
- * @create 2017-06-17 14:41
  */
 public class CommonConstant {
     public final static int ROOT = -1;

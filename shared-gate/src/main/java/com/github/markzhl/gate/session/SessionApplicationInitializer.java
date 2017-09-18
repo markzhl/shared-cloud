@@ -10,7 +10,6 @@ import javax.servlet.ServletContext;
  * 
  *
  * @author mark
- * @create 2017-06-23 8:37
  */
 @Service
 public class SessionApplicationInitializer  extends AbstractHttpSessionApplicationInitializer {

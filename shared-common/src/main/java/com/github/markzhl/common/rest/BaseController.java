@@ -18,7 +18,6 @@ import com.github.markzhl.common.service.BaseService;
  * 
  *
  * @author mark
- * @create 2017-06-15 8:48
  */
 public class BaseController<Servcie extends BaseService,Entity> {
     @Autowired

@@ -13,7 +13,6 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
  * 
  *
  * @author mark
- * @create 2017-05-25 12:44
  */
 @EnableDiscoveryClient  //激活eureka中的DiscoveryClient实现
 @EnableEurekaClient

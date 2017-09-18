@@ -16,7 +16,6 @@ import de.codecentric.boot.admin.config.EnableAdminServer;
  * 
  *
  * @author mark
- * @create 2017-05-25 12:44
  */
 @SpringBootApplication
 @EnableHystrix

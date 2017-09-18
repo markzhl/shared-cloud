@@ -20,7 +20,6 @@ import com.github.markzhl.common.service.BaseService;
  * 
  *
  * @author mark
- * @create 2017-06-29 15:58
  */
 @Service
 public class GateClientService extends BaseService<GateClientMapper,GateClient> {

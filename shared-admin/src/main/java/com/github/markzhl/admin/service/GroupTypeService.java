@@ -10,7 +10,6 @@ import com.github.markzhl.common.service.BaseService;
  * 
  *
  * @author mark
- * @create 2017-06-12 8:48
  */
 @Service
 public class GroupTypeService extends BaseService<GroupTypeMapper,GroupType> {

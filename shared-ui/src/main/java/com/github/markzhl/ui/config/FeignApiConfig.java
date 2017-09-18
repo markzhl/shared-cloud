@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import com.github.markzhl.gate.agent.feign.FeignInterceptor;
 
 /**
- * Created by mark on 2017/7/5.
+ * 
+ * @author mark
  */
 @Configuration
 public class FeignApiConfig {

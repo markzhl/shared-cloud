@@ -12,7 +12,8 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 import com.github.markzhl.gate.utils.DBLog;
 
 /**
- * Created by mark on 2017/6/2.
+ * 
+ * @author mark
  */
 @SpringBootApplication
 @EnableDiscoveryClient

@@ -6,7 +6,6 @@ import java.util.List;
  * 
  *
  * @author mark
- * @create 2017-06-14 22:40
  */
 public class TableResultResponse<T> {
     int total;

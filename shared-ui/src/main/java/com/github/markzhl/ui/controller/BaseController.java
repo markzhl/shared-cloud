@@ -6,7 +6,8 @@ import org.springframework.util.Base64Utils;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by mark on 2017/7/25.
+ * 
+ * @author mark
  */
 public class BaseController {
     @Autowired

@@ -12,7 +12,6 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
  * 
  *
  * @author mark
- * @create 2017-06-21 8:39
  */
 @Service
 public class UserSecurity {

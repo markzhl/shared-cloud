@@ -55,18 +55,18 @@ security:
         password: admin
         role: USER
 
-#gate:
-#    client: 
-#        authHeader: access-token
-#        authHost: http://localhost:80/apiauth
-#    ignore:
-#        startWith: /static,/admin,/index,/about
-#        contain: .
-#    oauth:
-#        prefix: /api
-#
-#    api:
-#        header: access-token  #http 请求头key
-#        secret: mySecret   #jwt 加密密钥
-#        expiration: 60  # 过期秒数
-#        tokenHead: ApiGateToken # 认证token前缀
+gate:
+    client: 
+        authHeader: access-token
+        authHost: http://localhost:80/apiauth
+    ignore:
+        startWith: /static,/admin,/index,/about
+        contain: .
+    oauth:
+        prefix: /api
+
+    api:
+        header: access-token  #http 请求头key
+        secret: mySecret   #jwt 加密密钥
+        expiration: 60  # 过期秒数
+        tokenHead: ApiGateToken # 认证token前缀

@@ -35,7 +35,8 @@ import com.google.common.collect.Collections2;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by mark on 2017/7/8.
+ * 
+ * @author mark
  */
 @WebFilter(filterName="resourceAccessFilter",urlPatterns="/*")
 @Slf4j

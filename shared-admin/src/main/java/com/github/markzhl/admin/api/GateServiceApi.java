@@ -28,7 +28,6 @@ import tk.mybatis.mapper.entity.Example;
  * 
  *
  * @author mark
- * @create 2017-07-02 19:23
  */
 @Controller
 @RequestMapping("api")

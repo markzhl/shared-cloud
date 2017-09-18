@@ -14,7 +14,6 @@ import com.github.markzhl.ui.rpc.IUserService;
  * 
  *
  * @author mark
- * @create 2017-06-27 12:40
  */
 @Controller
 public class UserPermissionController  extends BaseController{

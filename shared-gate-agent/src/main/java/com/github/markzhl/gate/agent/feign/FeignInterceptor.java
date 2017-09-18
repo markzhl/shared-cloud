@@ -16,14 +16,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * Created by mark on 2017/7/5.
+ * 
+ * @author mark
  */
 public class FeignInterceptor implements RequestInterceptor {
 
     private String clientId;
     private String secret;
     private String authHeader;
-    private static String authHost;
+    private String authHost;
     private String tokenHead;
 
     public FeignInterceptor(String clientId, String secret, String header, String authHost, String tokenHead) {
@@ -37,11 +38,11 @@ public class FeignInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        String token = getTokenStrategy.getAccessToken(clientId, secret);
+        String token = getTokenStrategy.getAccessToken(clientId, secret, authHost);
         requestTemplate.header(authHeader,tokenHead+" "+token);
     }
 
-    private static String getToken(String clientId,String secret) throws AuthenticationServerErrorException, AuthenticationVerifyFailException {
+    private static String getToken(String clientId, String secret, String authHost) throws AuthenticationServerErrorException, AuthenticationVerifyFailException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("clientId",clientId);
         jsonObject.put("secret",secret);
@@ -62,7 +63,7 @@ public class FeignInterceptor implements RequestInterceptor {
     }
 
     private interface GetTokenStrategy {
-        String getAccessToken(String appId, String appSecret) throws AuthenticationVerifyFailException, AuthenticationServerErrorException;
+        String getAccessToken(String appId, String appSecret, String authHost) throws AuthenticationVerifyFailException, AuthenticationServerErrorException;
     }
 
 
@@ -71,10 +72,12 @@ public class FeignInterceptor implements RequestInterceptor {
         private static final class ClientInfo {
             private final String clientId;
             private final String secret;
-
-            ClientInfo(String clientId, String secret) {
+            private final String authHost;
+            
+            ClientInfo(String clientId, String secret, String authHost) {
                 this.clientId = clientId;
                 this.secret = secret;
+                this.authHost = authHost;
             }
         }
 
@@ -83,11 +86,11 @@ public class FeignInterceptor implements RequestInterceptor {
         private static final AtomicReference<String> accessToken = new AtomicReference<String>();
 
         @Override
-        public String getAccessToken(String clientId, String secret) throws AuthenticationVerifyFailException, AuthenticationServerErrorException {
-            clientInfo = new ClientInfo(clientId, secret);
+        public String getAccessToken(String clientId, String secret, String authHost) throws AuthenticationVerifyFailException, AuthenticationServerErrorException {
+            clientInfo = new ClientInfo(clientId, secret, authHost);
             String token = accessToken.get();
             if(token == null){
-                token = getToken(clientId, secret);
+                token = getToken(clientId, secret, authHost);
                 executor.compareAndSet(null, scheduledExecutor());
             }
             return token;
@@ -99,7 +102,7 @@ public class FeignInterceptor implements RequestInterceptor {
                 @Override
                 public void run() {
                     try {
-                        accessToken.set(getToken(clientInfo.clientId, clientInfo.secret));
+                        accessToken.set(getToken(clientInfo.clientId, clientInfo.secret, clientInfo.authHost));
                     } catch (AuthenticationVerifyFailException e) {
                         e.printStackTrace();
                     } catch (AuthenticationServerErrorException e) {

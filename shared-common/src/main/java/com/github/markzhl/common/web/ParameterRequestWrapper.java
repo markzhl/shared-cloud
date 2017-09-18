@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequestWrapper;
  * 
  *
  * @author mark
- * @create 2017-07-01 17:04
  */
 public class ParameterRequestWrapper extends HttpServletRequestWrapper {
 

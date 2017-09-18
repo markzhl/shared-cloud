@@ -19,7 +19,6 @@ import tk.mybatis.mapper.entity.Example;
  * 
  *
  * @author mark
- * @create 2017-07-01 20:32
  */
 @Controller
 @RequestMapping("gateLog")

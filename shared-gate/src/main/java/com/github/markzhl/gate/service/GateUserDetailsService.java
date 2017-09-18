@@ -18,7 +18,6 @@ import java.util.Set;
  * 
  *
  * @author mark
- * @create 2017-06-22 13:00
  */
 @Service
 public class GateUserDetailsService implements UserDetailsService {

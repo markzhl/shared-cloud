@@ -12,7 +12,6 @@ import com.github.markzhl.common.service.BaseService;
  * 
  *
  * @author mark
- * @create 2017-06-08 16:23
  */
 @Service
 public class UserService extends BaseService<UserMapper,User> {

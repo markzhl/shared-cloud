@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by mark on 2017/6/12.
+ * 
+ * @author mark
  */
 public class TreeNode {
     protected int id;

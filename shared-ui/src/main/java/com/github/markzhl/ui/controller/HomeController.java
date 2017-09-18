@@ -13,7 +13,6 @@ import com.github.markzhl.ui.rpc.IUserService;
  * 
  *
  * @author mark
- * @create 2017-06-06 13:34
  */
 @Controller
 @RequestMapping("")

@@ -6,7 +6,8 @@ import org.springframework.security.core.userdetails.User;
 import java.util.Collection;
 
 /**
- * Created by mark on 2017/7/9.
+ * 
+ * @author mark
  */
 public class SecurityUser extends User {
     private String name;

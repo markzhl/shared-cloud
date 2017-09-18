@@ -10,7 +10,6 @@ import com.github.markzhl.api.vo.log.LogInfo;
  * 
  *
  * @author mark
- * @create 2017-07-01 15:16
  */
 @FeignClient("admin-back")
 public interface ILogService {

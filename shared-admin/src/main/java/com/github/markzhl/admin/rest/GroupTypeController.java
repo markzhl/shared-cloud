@@ -18,7 +18,6 @@ import tk.mybatis.mapper.entity.Example;
  * 
  *
  * @author mark
- * @create 2017-06-08 11:51
  */
 @Controller
 @RequestMapping("groupType")
