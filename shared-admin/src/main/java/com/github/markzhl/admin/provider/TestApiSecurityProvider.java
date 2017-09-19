@@ -1,4 +1,4 @@
-package com.github.markzhl.admin.api;
+package com.github.markzhl.admin.provider;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -6,24 +6,21 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.markzhl.admin.entity.User;
 import com.github.markzhl.admin.service.UserService;
-import com.github.markzhl.api.vo.user.UserInfo;
+import com.github.markzhl.api.ITestApiSecurityApi;
 import com.github.markzhl.gate.agent.rest.ApiGateSecurity;
+import com.github.markzhl.vo.user.UserInfo;
 
 @Controller
-@RequestMapping("apisec")
 @ApiGateSecurity
-public class TestApiSecurity {
+public class TestApiSecurityProvider implements ITestApiSecurityApi{
     @Autowired
     private UserService userService;
     
-    @RequestMapping(value = "/user/usernameforapi/{username}",method = RequestMethod.GET, produces="application/json")
-    public  @ResponseBody UserInfo getUserByUsernameForApi(@PathVariable("username")String username) {
+    public @ResponseBody UserInfo testApiGateSecurity(@PathVariable("username")String username) {
         UserInfo info = new UserInfo();
         User user = userService.getUserByUsername(username);
         assertNotNull(user);

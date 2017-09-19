@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.markzhl.admin.entity.Element;
+import com.github.markzhl.admin.entity.Resource;
 import com.github.markzhl.admin.entity.GateClient;
 import com.github.markzhl.admin.service.GateClientService;
 import com.github.markzhl.common.msg.ObjectRestResponse;
@@ -57,8 +57,8 @@ public class GateClientController extends BaseController<GateClientService,GateC
 
     @RequestMapping(value = "/{id}/service", method = RequestMethod.GET)
     @ResponseBody
-    public ObjectRestResponse<List<Element>> getServices(@PathVariable int id){
-        return new ObjectRestResponse<List<Element>>().rel(true).result(baseService.getClientServices(id));
+    public ObjectRestResponse<List<Resource>> getServices(@PathVariable int id){
+        return new ObjectRestResponse<List<Resource>>().rel(true).result(baseService.getClientServices(id));
     }
 
 

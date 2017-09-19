@@ -5,11 +5,9 @@ spring:
 server:
     port: 8764 #启动端口
 
-security:
-    user:
-        name: whb
-        password: 123456
-        role: USER
+management:
+  security:
+    enabled: false # spring-boot 1.5.2之后严格执行安全策略，所以需要配置这个为false
 eureka:
      instance:
         preferIpAddress: true

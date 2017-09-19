@@ -3,8 +3,8 @@ package com.github.markzhl.admin.entity;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "base_element")
-public class Element {
+@Table(name = "base_resource")
+public class Resource {
     @Id
     private Integer id;
 

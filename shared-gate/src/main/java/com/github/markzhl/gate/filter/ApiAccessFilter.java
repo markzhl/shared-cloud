@@ -5,16 +5,15 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.github.markzhl.api.vo.authority.PermissionInfo;
 import com.github.markzhl.common.util.ClientUtil;
-import com.github.markzhl.gate.rpc.IGateService;
+import com.github.markzhl.gate.consumer.GateConsumer;
 import com.github.markzhl.gate.service.AuthService;
+import com.github.markzhl.vo.authority.PermissionInfo;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.netflix.zuul.ZuulFilter;
@@ -34,7 +33,7 @@ public class ApiAccessFilter extends ZuulFilter {
     @Autowired
     private AuthService authService;
     @Autowired
-    private IGateService gateService;
+    private GateConsumer gateService;
     @Value("${gate.api.header}")
     private String tokenHead;
     @Value("${gate.oauth.prefix}")
@@ -62,7 +61,6 @@ public class ApiAccessFilter extends ZuulFilter {
     public Object run() {
         // TODO: 2017/7/9  黑白名单、ip限制、前端有效用户
         RequestContext ctx = RequestContext.getCurrentContext();
-        HttpSession httpSession = ctx.getRequest().getSession();
         HttpServletRequest request = ctx.getRequest();
         String requestUri = request.getRequestURI();
         final String method = request.getMethod();
@@ -85,6 +83,7 @@ public class ApiAccessFilter extends ZuulFilter {
             String token = request.getHeader(tokenHead);
             if(token == null || token.length() == 0){
             	setFailedRequest("No token",401);
+            	return null;
             }
             if(!authService.validate(token,finalRequestUri+":"+method)){
                 setFailedRequest("Unauthorized",401);

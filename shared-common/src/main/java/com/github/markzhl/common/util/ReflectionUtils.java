@@ -170,7 +170,7 @@ public class ReflectionUtils {
 	 */
 	public static Field getAccessibleField(final Object obj, final String fieldName) {
 		Validate.notNull(obj, "object can't be null");
-		Validate.notBlank(fieldName, "fieldName can't be blank");
+		Validate.notEmpty(fieldName, "fieldName can't be blank");
 		for (Class<?> superClass = obj.getClass(); superClass != Object.class; superClass = superClass.getSuperclass()) {
 			try {
 				Field field = superClass.getDeclaredField(fieldName);
@@ -194,7 +194,7 @@ public class ReflectionUtils {
 	public static Method getAccessibleMethod(final Object obj, final String methodName,
 			final Class<?>... parameterTypes) {
 		Validate.notNull(obj, "object can't be null");
-		Validate.notBlank(methodName, "methodName can't be blank");
+		Validate.notEmpty(methodName, "methodName can't be blank");
 
 		for (Class<?> searchType = obj.getClass(); searchType != Object.class; searchType = searchType.getSuperclass()) {
 			try {
@@ -218,7 +218,7 @@ public class ReflectionUtils {
 	 */
 	public static Method getAccessibleMethodByName(final Object obj, final String methodName) {
 		Validate.notNull(obj, "object can't be null");
-		Validate.notBlank(methodName, "methodName can't be blank");
+		Validate.notEmpty(methodName, "methodName can't be blank");
 
 		for (Class<?> searchType = obj.getClass(); searchType != Object.class; searchType = searchType.getSuperclass()) {
 			Method[] methods = searchType.getDeclaredMethods();

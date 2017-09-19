@@ -15,6 +15,11 @@ spring:
             max-active: 20
 server:
     port: 80 #启动端口
+    
+management:
+  security:
+    enabled: false # spring-boot 1.5.2之后严格执行安全策略，所以需要配置这个为false
+
 #
 zuul:
   routes:
@@ -60,7 +65,7 @@ gate:
         authHeader: access-token
         authHost: http://localhost:80/apiauth
     ignore:
-        startWith: /static,/admin,/index,/about
+        startWith: /static,/admin,/index,/about,/back
         contain: .
     oauth:
         prefix: /api

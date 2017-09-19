@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.github.markzhl.api.vo.authority.PermissionInfo;
-import com.github.markzhl.api.vo.gate.ClientInfo;
-import com.github.markzhl.gate.rpc.IGateService;
+import com.github.markzhl.gate.consumer.GateConsumer;
 import com.github.markzhl.gate.security.ApiTokenUtil;
+import com.github.markzhl.vo.authority.PermissionInfo;
+import com.github.markzhl.vo.gate.ClientInfo;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 
@@ -20,7 +20,7 @@ import com.google.common.collect.Collections2;
 public class AuthService{
 
     private ApiTokenUtil jwtTokenUtil;
-    private IGateService gateService;
+    private GateConsumer gateService;
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     @Value("${gate.api.tokenHead}")
@@ -29,7 +29,7 @@ public class AuthService{
     @Autowired
     public AuthService(
             ApiTokenUtil jwtTokenUtil,
-            IGateService gateService) {
+            GateConsumer gateService) {
         this.jwtTokenUtil = jwtTokenUtil;
         this.gateService = gateService;
     }

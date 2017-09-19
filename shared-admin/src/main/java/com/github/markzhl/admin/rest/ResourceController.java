@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.markzhl.admin.entity.Element;
-import com.github.markzhl.admin.service.ElementService;
+import com.github.markzhl.admin.entity.Resource;
+import com.github.markzhl.admin.service.ResourceService;
 import com.github.markzhl.admin.service.UserService;
 import com.github.markzhl.common.msg.ObjectRestResponse;
 import com.github.markzhl.common.msg.TableResultResponse;
@@ -25,38 +25,38 @@ import tk.mybatis.mapper.entity.Example;
  * @author mark
  */
 @Controller
-@RequestMapping("element")
-public class ElementController extends BaseController<ElementService, Element> {
+@RequestMapping("resource")
+public class ResourceController extends BaseController<ResourceService, Resource> {
   @Autowired
   private UserService userService;
 
   @RequestMapping(value = "/page", method = RequestMethod.GET)
   @ResponseBody
-  public TableResultResponse<Element> page(@RequestParam(defaultValue = "10") int limit,
+  public TableResultResponse<Resource> page(@RequestParam(defaultValue = "10") int limit,
       @RequestParam(defaultValue = "1") int offset,String name, @RequestParam(defaultValue = "0") int menuId) {
-    Example example = new Example(Element.class);
+    Example example = new Example(Resource.class);
     Example.Criteria criteria = example.createCriteria();
     criteria.andEqualTo("menuId", menuId);
     if(StringUtils.isNotBlank(name)){
       criteria.andLike("name", "%" + name + "%");
     }
-    List<Element> elements = baseService.selectByExample(example);
-    return new TableResultResponse<Element>(elements.size(), elements);
+    List<Resource> resources = baseService.selectByExample(example);
+    return new TableResultResponse<Resource>(resources.size(), resources);
   }
 
   @RequestMapping(value = "/user", method = RequestMethod.GET)
   @ResponseBody
-  public ObjectRestResponse<Element> getAuthorityElement(String menuId) {
+  public ObjectRestResponse<Resource> getAuthorityResource(String menuId) {
     int userId = userService.getUserByUsername(getCurrentUserName()).getId();
-    List<Element> elements = baseService.getAuthorityElementByUserId(userId + "",menuId);
-    return new ObjectRestResponse<List<Element>>().rel(true).result(elements);
+    List<Resource> resources = baseService.getAuthorityResourceByUserId(userId + "",menuId);
+    return new ObjectRestResponse<List<Resource>>().rel(true).result(resources);
   }
 
   @RequestMapping(value = "/user/menu", method = RequestMethod.GET)
   @ResponseBody
-  public ObjectRestResponse<Element> getAuthorityElement() {
+  public ObjectRestResponse<Resource> getAuthorityResource() {
     int userId = userService.getUserByUsername(getCurrentUserName()).getId();
-    List<Element> elements = baseService.getAuthorityElementByUserId(userId + "");
-    return new ObjectRestResponse<List<Element>>().rel(true).result(elements);
+    List<Resource> resources = baseService.getAuthorityResourceByUserId(userId + "");
+    return new ObjectRestResponse<List<Resource>>().rel(true).result(resources);
   }
 }

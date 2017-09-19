@@ -384,7 +384,7 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
                             type: "GET",
                             url: "/back/menu/authorityTree",
                             success: function (defaultData) {
-                                authorityElement.init();
+                                authorityResource.init();
                                 var $checkableTree = $('#menuTreeview').treeview({
                                     data: defaultData,
                                     levels: 1,
@@ -419,11 +419,11 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
                                     },
                                     onNodeSelected: function(event, data) {
                                         group.currentAuthorityMenu = data;
-                                        authorityElement.refresh();
+                                        authorityResource.refresh();
                                     } ,
                                     onNodeUnselected: function(event, data) {
                                         group.currentAuthorityMenu = {};
-                                        authorityElement.refresh();
+                                        authorityResource.refresh();
                                     }
 //
                                 });

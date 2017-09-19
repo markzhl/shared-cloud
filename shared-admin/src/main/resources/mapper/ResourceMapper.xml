@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.markzhl.admin.mapper.ElementMapper">
-    <resultMap id="BaseResultMap" type="com.github.markzhl.admin.entity.Element">
+<mapper namespace="com.github.markzhl.admin.mapper.ResourceMapper">
+    <resultMap id="BaseResultMap" type="com.github.markzhl.admin.entity.Resource">
         <!--
           WARNING - @mbggenerated
         -->
@@ -28,9 +28,9 @@
         <result column="attr7" jdbcType="VARCHAR" property="attr7"/>
         <result column="attr8" jdbcType="VARCHAR" property="attr8"/>
     </resultMap>
-    <select id="selectAuthorityElementByUserId" resultMap="BaseResultMap">
+    <select id="selectAuthorityResourceByUserId" resultMap="BaseResultMap">
     select distinct t.code,t.type,t.name,t.uri,t.method,m.title as menu_id from base_resource_authority ra
-        inner join base_element t
+        inner join base_resource t
        on ra.resource_id = t.id
         and ra.authority_id in (
           select group_id from base_group_member where user_id = #{userId}
@@ -41,9 +41,9 @@
         inner join base_menu m
        on t.menu_id = m.id
   </select>
-    <select id="selectAuthorityMenuElementByUserId" resultMap="BaseResultMap">
+    <select id="selectAuthorityMenuResourceByUserId" resultMap="BaseResultMap">
         select distinct t.* from base_resource_authority ra
-        inner join base_element t
+        inner join base_resource t
         on ra.resource_id = t.id
         and ra.authority_id in (
         select group_id from base_group_member where user_id = #{userId}
@@ -53,9 +53,9 @@
         and ra.resource_type = 'button'
         and t.menu_id = #{menuId}
     </select>
-    <select id="selectAuthorityElementByClientId" resultMap="BaseResultMap">
+    <select id="selectAuthorityResourceByClientId" resultMap="BaseResultMap">
         select distinct t.* from gate_client_service cs
-         inner join base_element t
+         inner join base_resource t
          on t.id = cs.service_id
          and cs.client_id = #{clientId}
     </select>

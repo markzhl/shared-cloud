@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.github.markzhl.ui.rpc.IUserService;
+import com.github.markzhl.ui.rpc.UserClient;
 
 /**
  * 
@@ -18,7 +18,7 @@ import com.github.markzhl.ui.rpc.IUserService;
 @RequestMapping("")
 public class HomeController extends BaseController{
     @Autowired
-    private IUserService userService;
+    private UserClient userService;
 
 
     @RequestMapping(value = "index",method = RequestMethod.GET)
@@ -70,9 +70,9 @@ public class HomeController extends BaseController{
     public String groupTypeEdit(){
         return "groupType/edit";
     }
-    @RequestMapping(value="element/edit",method = RequestMethod.GET)
-    public String elementEdit(){
-        return "element/edit";
+    @RequestMapping(value="resource/edit",method = RequestMethod.GET)
+    public String resourceEdit(){
+        return "resource/edit";
     }
     @RequestMapping(value = "gateClient",method = RequestMethod.GET)
     public String gateClient(){

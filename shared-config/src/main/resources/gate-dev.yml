@@ -3,7 +3,7 @@ gate:
         authHeader: access-token
         authHost: http://localhost:80/apiauth
     ignore:
-        startWith: /static,/admin,/index,/about
+        startWith: /static,/admin,/index,/about,/back
         contain: .
     oauth:
         prefix: /api

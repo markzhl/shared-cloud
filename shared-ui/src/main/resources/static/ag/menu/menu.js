@@ -63,7 +63,7 @@ menu.select = function (layerTips) {
     }
 };
 menu.clickRow = function () {
-    element.refresh();
+	resource.refresh();
 };
 menu.refresh = function () {
     menu.table.bootstrapTreeTable("refresh");

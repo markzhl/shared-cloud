@@ -10,10 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>shared-monitor</artifactId>
-    <properties>
-        <hystrix.version>1.5.12</hystrix.version>
-        <boot.admin.version>1.4.2</boot.admin.version>
-    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -53,17 +50,17 @@
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-server</artifactId>
-            <version>${boot.admin.version}</version>
+            <version>${spring-boot-admin.version}</version>
         </dependency>
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-server-ui</artifactId>
-            <version>${boot.admin.version}</version>
+            <version>${spring-boot-admin.version}</version>
         </dependency>
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>${boot.admin.version}</version>
+            <version>${spring-boot-admin.version}</version>
         </dependency>
         <!--用于测试的，本例可省略-->
         <dependency>

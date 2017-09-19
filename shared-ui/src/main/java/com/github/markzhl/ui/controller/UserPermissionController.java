@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.markzhl.common.msg.ObjectRestResponse;
-import com.github.markzhl.ui.rpc.IUserService;
+import com.github.markzhl.ui.rpc.UserClient;
 
 /**
  * 
@@ -18,7 +18,7 @@ import com.github.markzhl.ui.rpc.IUserService;
 @Controller
 public class UserPermissionController  extends BaseController{
     @Autowired
-    private IUserService userService;
+    private UserClient userService;
 
     @RequestMapping(value = "/user/system",method = RequestMethod.GET)
     @ResponseBody

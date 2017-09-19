@@ -1,7 +1,7 @@
 package com.github.markzhl.gate.service;
 
-import com.github.markzhl.api.vo.user.UserInfo;
 import com.github.markzhl.gate.biz.UserSecurity;
+import com.github.markzhl.vo.user.UserInfo;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

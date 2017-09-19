@@ -1,5 +1,11 @@
 package com.github.markzhl.gate.agent.feign;
 
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.markzhl.gate.agent.exception.AuthenticationServerErrorException;
@@ -9,11 +15,6 @@ import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 

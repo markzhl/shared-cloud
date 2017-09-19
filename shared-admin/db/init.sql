@@ -21,10 +21,10 @@ SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for base_element
+-- Table structure for base_resource
 -- ----------------------------
-DROP TABLE IF EXISTS `base_element`;
-CREATE TABLE `base_element` (
+DROP TABLE IF EXISTS `base_resource`;
+CREATE TABLE `base_resource` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
@@ -51,43 +51,43 @@ CREATE TABLE `base_element` (
 ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of base_element
+-- Records of base_resource
 -- ----------------------------
 BEGIN;
-INSERT INTO `base_element` VALUES ('3', 'userManager:btn_add', 'button', '新增', '/back/user', '1', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('4', 'userManager:btn_edit', 'button', '编辑', '/back/user', '1', null, null, 'PUT', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('5', 'userManager:btn_del	', 'button', '删除', '/back/user', '1', null, null, 'DELETE', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('9', 'menuManager:element', 'uri', '按钮页面', '/admin/element', '6', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('10', 'menuManager:btn_add', 'button', '新增', '/back/menu', '6', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('11', 'menuManager:btn_edit', 'button', '编辑', '/back/menu', '6', '', '', 'PUT', '', '2017-06-24 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `base_element` VALUES ('12', 'menuManager:btn_del	', 'button', '删除', '/back/menu', '6', '', '', 'DELETE', '', '2017-06-24 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `base_element` VALUES ('13', 'menuManager:btn_element_add', 'button', '新增元素', '/back/element', '6', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('14', 'menuManager:btn_element_edit', 'button', '编辑元素', '/back/element', '6', null, null, 'PUT', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('15', 'btn_element_del', 'button', '删除元素', '/back/element', '6', null, null, 'DELETE', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('16', 'groupManager:btn_add', 'button', '新增', '/back/group', '7', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('17', 'groupManager:btn_edit', 'button', '编辑', '/back/group', '7', null, null, 'PUT', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('18', 'groupManager:btn_del', 'button', '删除', '/back/group', '7', null, null, 'DELETE', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('19', 'groupManager:btn_userManager', 'button', '分配用户', '/back/group/{*}/user', '7', null, null, 'PUT', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('20', 'groupManager:btn_resourceManager', 'button', '分配权限', '/back/group/{*}/authority', '7', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('21', 'groupManager:menu', 'uri', '分配菜单', '/back/group/{*}/authority/menu', '7', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('22', 'groupManager:element', 'uri', '分配资源', '/back/group/{*}/authority/element', '7', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('23', 'userManager:view	', 'uri', '查看', '/back/user', '1', '', '', 'GET', '', '2017-06-26 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `base_element` VALUES ('24', 'menuManager:view', 'uri', '查看', '/back/menu', '6', '', '', 'GET', '', '2017-06-26 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `base_element` VALUES ('27', 'menuManager:element_view', 'uri', '查看', '/back/element', '6', null, null, 'GET', null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('28', 'groupManager:view', 'uri', '查看', '/back/group', '7', null, null, 'GET', null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('30', 'adminAPI:view', 'uri', '查看', '/back/swagger', '23', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('31', 'adminAPI:swagger', 'uri', '查看', '/back/v2', '23', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('32', 'groupTypeManager:view', 'uri', '查看', '/back/groupType', '8', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('33', 'groupTypeManager:btn_add', 'button', '新增', '/back/groupType', '8', null, null, 'POST', null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('34', 'groupTypeManager:btn_edit', 'button', '编辑', '/back/groupType', '8', null, null, 'PUT', null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('35', 'groupTypeManager:btn_del', 'button', '删除', '/back/groupType', '8', null, null, 'DELETE', null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('40', 'adminAPI:swagger_resources', 'uri', '查看', '/back/swagger-resources', '23', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('41', 'gateLogManager:view', 'button', '查看', '/back/gateLog', '27', null, null, 'GET', '', '2017-07-01 00:00:00', '1', 'admin', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('42', 'blogArticle:view', 'uri', '查看', '/blog/article', '17', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('43', 'blogArticle:edit', 'button', '编辑', '/blog/article', '17', null, null, 'PUT', '', '2017-07-15 23:52:01', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('44', 'blogArticle:del', 'button', '删除', '/blog/article', '17', null, null, 'DELETE', '', '2017-07-15 23:52:38', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('45', 'blogArticle:add', 'button', '新增', '/blog/article', '17', null, null, 'POST', '', '2017-07-15 23:53:06', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('47', 'api:test', 'uri', '测试api权限', '/apisec/user/usernameforapi/{*}', '-1', null, null, 'GET', '', '2017-08-30 17:39:06', '1', 'Mr.AG', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('3', 'userManager:btn_add', 'button', '新增', '/back/user', '1', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('4', 'userManager:btn_edit', 'button', '编辑', '/back/user', '1', null, null, 'PUT', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('5', 'userManager:btn_del	', 'button', '删除', '/back/user', '1', null, null, 'DELETE', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('9', 'menuManager:resource', 'uri', '按钮页面', '/admin/resource', '6', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('10', 'menuManager:btn_add', 'button', '新增', '/back/menu', '6', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('11', 'menuManager:btn_edit', 'button', '编辑', '/back/menu', '6', '', '', 'PUT', '', '2017-06-24 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `base_resource` VALUES ('12', 'menuManager:btn_del	', 'button', '删除', '/back/menu', '6', '', '', 'DELETE', '', '2017-06-24 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `base_resource` VALUES ('13', 'menuManager:btn_resource_add', 'button', '新增元素', '/back/resource', '6', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('14', 'menuManager:btn_resource_edit', 'button', '编辑元素', '/back/resource', '6', null, null, 'PUT', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('15', 'btn_resource_del', 'button', '删除元素', '/back/resource', '6', null, null, 'DELETE', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('16', 'groupManager:btn_add', 'button', '新增', '/back/group', '7', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('17', 'groupManager:btn_edit', 'button', '编辑', '/back/group', '7', null, null, 'PUT', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('18', 'groupManager:btn_del', 'button', '删除', '/back/group', '7', null, null, 'DELETE', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('19', 'groupManager:btn_userManager', 'button', '分配用户', '/back/group/{*}/user', '7', null, null, 'PUT', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('20', 'groupManager:btn_resourceManager', 'button', '分配权限', '/back/group/{*}/authority', '7', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('21', 'groupManager:menu', 'uri', '分配菜单', '/back/group/{*}/authority/menu', '7', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('22', 'groupManager:resource', 'uri', '分配资源', '/back/group/{*}/authority/resource', '7', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('23', 'userManager:view	', 'uri', '查看', '/back/user', '1', '', '', 'GET', '', '2017-06-26 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `base_resource` VALUES ('24', 'menuManager:view', 'uri', '查看', '/back/menu', '6', '', '', 'GET', '', '2017-06-26 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `base_resource` VALUES ('27', 'menuManager:resource_view', 'uri', '查看', '/back/resource', '6', null, null, 'GET', null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('28', 'groupManager:view', 'uri', '查看', '/back/group', '7', null, null, 'GET', null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('30', 'adminAPI:view', 'uri', '查看', '/back/swagger', '23', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('31', 'adminAPI:swagger', 'uri', '查看', '/back/v2', '23', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('32', 'groupTypeManager:view', 'uri', '查看', '/back/groupType', '8', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('33', 'groupTypeManager:btn_add', 'button', '新增', '/back/groupType', '8', null, null, 'POST', null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('34', 'groupTypeManager:btn_edit', 'button', '编辑', '/back/groupType', '8', null, null, 'PUT', null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('35', 'groupTypeManager:btn_del', 'button', '删除', '/back/groupType', '8', null, null, 'DELETE', null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('40', 'adminAPI:swagger_resources', 'uri', '查看', '/back/swagger-resources', '23', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('41', 'gateLogManager:view', 'button', '查看', '/back/gateLog', '27', null, null, 'GET', '', '2017-07-01 00:00:00', '1', 'admin', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('42', 'blogArticle:view', 'uri', '查看', '/blog/article', '17', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('43', 'blogArticle:edit', 'button', '编辑', '/blog/article', '17', null, null, 'PUT', '', '2017-07-15 23:52:01', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('44', 'blogArticle:del', 'button', '删除', '/blog/article', '17', null, null, 'DELETE', '', '2017-07-15 23:52:38', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('45', 'blogArticle:add', 'button', '新增', '/blog/article', '17', null, null, 'POST', '', '2017-07-15 23:53:06', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource` VALUES ('47', 'api:test', 'uri', '测试api权限', '/api/testapigatesecurity/username/{*}', '-1', null, null, 'GET', '', '2017-08-30 17:39:06', '1', 'Mr.AG', '127.0.0.1', null, null, null, null, null, null, null, null);
 COMMIT;
 -- ----------------------------
 -- Table structure for base_group

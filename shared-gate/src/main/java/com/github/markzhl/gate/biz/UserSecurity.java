@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import com.github.markzhl.api.vo.user.UserInfo;
-import com.github.markzhl.gate.rpc.IUserService;
+import com.github.markzhl.gate.consumer.UserConsumer;
+import com.github.markzhl.vo.user.UserInfo;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 /**
@@ -17,7 +17,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 public class UserSecurity {
     @Lazy
     @Autowired
-    private IUserService userService;
+    private UserConsumer userService;
 
     @HystrixCommand(fallbackMethod = "fallbackMethod")
     public UserInfo getUserByUsername(String username){

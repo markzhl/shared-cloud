@@ -1,4 +1,4 @@
-package com.github.markzhl.admin.api;
+package com.github.markzhl.admin.provider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,23 +10,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.markzhl.admin.constant.CommonConstant;
-import com.github.markzhl.admin.entity.Element;
+import com.github.markzhl.admin.entity.Resource;
 import com.github.markzhl.admin.entity.Menu;
 import com.github.markzhl.admin.entity.User;
-import com.github.markzhl.admin.service.ElementService;
+import com.github.markzhl.admin.service.ResourceService;
 import com.github.markzhl.admin.service.MenuService;
 import com.github.markzhl.admin.service.UserService;
 import com.github.markzhl.admin.vo.MenuTree;
-import com.github.markzhl.api.vo.authority.PermissionInfo;
-import com.github.markzhl.api.vo.gate.ClientInfo;
-import com.github.markzhl.api.vo.user.UserInfo;
+import com.github.markzhl.api.IUserApi;
 import com.github.markzhl.common.constant.UserConstant;
 import com.github.markzhl.common.util.TreeUtil;
+import com.github.markzhl.vo.authority.PermissionInfo;
+import com.github.markzhl.vo.user.UserInfo;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,19 +36,17 @@ import lombok.extern.slf4j.Slf4j;
  * @author mark
  */
 @Controller
-@RequestMapping("api")
 @Slf4j
-public class UserServiceApi {
+public class UserProvider implements IUserApi{
     @Autowired
     private UserService userService;
     @Autowired
     private MenuService menuService;
     @Autowired
-    private ElementService elementService;
+    private ResourceService resourceService;
     
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT);
     
-    @RequestMapping(value = "/user/username/{username}",method = RequestMethod.GET, produces="application/json")
     @HystrixCommand(fallbackMethod = "getUserByUsernameError")
     public  @ResponseBody UserInfo getUserByUsername(@PathVariable("username")String username) {
         UserInfo info = new UserInfo();
@@ -64,15 +61,14 @@ public class UserServiceApi {
 		return new UserInfo();
 	}
     
-    @RequestMapping(value = "/permissions", method = RequestMethod.GET)
     @HystrixCommand(fallbackMethod = "getAllPermissionError")
     public @ResponseBody List<PermissionInfo> getAllPermission(){
         List<Menu> menus = menuService.selectListAll();
         List<PermissionInfo> result = new ArrayList<PermissionInfo>();
         PermissionInfo info = null;
         menu2permission(menus, result);
-        List<Element> elements = elementService.selectListAll();
-        element2permission(result, elements);
+        List<Resource> resources = resourceService.selectListAll();
+        resource2permission(result, resources);
         return result;
     }
     
@@ -101,7 +97,6 @@ public class UserServiceApi {
         }
     }
 
-    @RequestMapping(value = "/user/un/{username}/permissions", method = RequestMethod.GET)
     @HystrixCommand(fallbackMethod = "getPermissionByUsernameError")
     public @ResponseBody List<PermissionInfo> getPermissionByUsername(@PathVariable("username") String username){
         User user = userService.getUserByUsername(username);
@@ -109,8 +104,8 @@ public class UserServiceApi {
         List<PermissionInfo> result = new ArrayList<PermissionInfo>();
         PermissionInfo info = null;
         menu2permission(menus,result);
-        List<Element> elements = elementService.getAuthorityElementByUserId(user.getId()+"");
-        element2permission(result, elements);
+        List<Resource> resources = resourceService.getAuthorityResourceByUserId(user.getId()+"");
+        resource2permission(result, resources);
         return result;
     }
     
@@ -119,21 +114,20 @@ public class UserServiceApi {
     	return new ArrayList<PermissionInfo>();
     }
 
-    private void element2permission(List<PermissionInfo> result, List<Element> elements) {
+    private void resource2permission(List<PermissionInfo> result, List<Resource> resources) {
         PermissionInfo info;
-        for(Element element:elements){
+        for(Resource resource:resources){
             info = new PermissionInfo();
-            info.setCode(element.getCode());
-            info.setType(element.getType());
-            info.setUri(element.getUri());
-            info.setMethod(element.getMethod());
-            info.setName(element.getName());
-            info.setMenu(element.getMenuId());
+            info.setCode(resource.getCode());
+            info.setType(resource.getType());
+            info.setUri(resource.getUri());
+            info.setMethod(resource.getMethod());
+            info.setName(resource.getName());
+            info.setMenu(resource.getMenuId());
             result.add(info);
         }
     }
 
-    @RequestMapping(value = "/user/un/{username}/system", method = RequestMethod.GET)
     @ResponseBody
     @HystrixCommand(fallbackMethod = "getSystemsByUsernameError")
     public String getSystemsByUsername(@PathVariable("username") String username){
@@ -146,7 +140,6 @@ public class UserServiceApi {
     	return JSONObject.toJSONString(new ArrayList<Menu>());
     }
     
-    @RequestMapping(value = "/user/un/{username}/menu/parent/{parentId}", method = RequestMethod.GET)
     @ResponseBody
     @HystrixCommand(fallbackMethod = "getMenusByUsernameError")
     public String getMenusByUsername(@PathVariable("username") String username,@PathVariable("parentId")Integer parentId){
@@ -166,7 +159,6 @@ public class UserServiceApi {
     	return JSONObject.toJSONString(new ArrayList<Menu>());
     }
     
-    @RequestMapping(value = "/user/un/{username}/pw/{pasword}/match", method = RequestMethod.GET)
     @ResponseBody
     public Boolean isMatchByUsernameAndPassword(@PathVariable("username") String username, @PathVariable("pasword") String pasword){
         String encodedPassword = userService.getUserByUsername(username).getPassword();
@@ -187,4 +179,5 @@ public class UserServiceApi {
         }
         return TreeUtil.bulid(trees, root) ;
     }
+    
 }

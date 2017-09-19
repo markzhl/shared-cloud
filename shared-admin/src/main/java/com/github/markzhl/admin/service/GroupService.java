@@ -108,12 +108,12 @@ public class GroupService extends BaseService<GroupMapper,Group>{
      * 分配资源权限
      * @param groupId
      * @param menuId
-     * @param elementId
+     * @param resourceId
      */
-    public void modifyAuthorityElement(int groupId,int menuId,int elementId){
+    public void modifyAuthorityResource(int groupId,int menuId,int resourceId){
         ResourceAuthority authority = new ResourceAuthority(CommonConstant.AUTHORITY_TYPE_GROUP,CommonConstant.RESOURCE_TYPE_BTN);
         authority.setAuthorityId(groupId + "");
-        authority.setResourceId(elementId + "");
+        authority.setResourceId(resourceId + "");
         authority.setParentId("-1");
         resourceAuthorityMapper.insertSelective(authority);
     }
@@ -122,12 +122,12 @@ public class GroupService extends BaseService<GroupMapper,Group>{
      * 移除资源权限
      * @param groupId
      * @param menuId
-     * @param elementId
+     * @param resourceId
      */
-    public void removeAuthorityElement(int groupId, int menuId, int elementId) {
+    public void removeAuthorityResource(int groupId, int menuId, int resourceId) {
         ResourceAuthority authority = new ResourceAuthority();
         authority.setAuthorityId(groupId+"");
-        authority.setResourceId(elementId + "");
+        authority.setResourceId(resourceId + "");
         authority.setParentId("-1");
         resourceAuthorityMapper.delete(authority);
     }
@@ -152,7 +152,7 @@ public class GroupService extends BaseService<GroupMapper,Group>{
     }
 
 
-    public List<Integer> getAuthorityElement(int groupId) {
+    public List<Integer> getAuthorityResource(int groupId) {
         ResourceAuthority authority = new ResourceAuthority(CommonConstant.AUTHORITY_TYPE_GROUP,CommonConstant.RESOURCE_TYPE_BTN);
         authority.setAuthorityId(groupId+"");
         List<ResourceAuthority> authorities = resourceAuthorityMapper.select(authority);

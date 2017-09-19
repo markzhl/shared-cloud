@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.github.markzhl.admin.constant.CommonConstant;
-import com.github.markzhl.admin.entity.Element;
+import com.github.markzhl.admin.entity.Resource;
 import com.github.markzhl.admin.entity.GateClient;
-import com.github.markzhl.admin.mapper.ElementMapper;
+import com.github.markzhl.admin.mapper.ResourceMapper;
 import com.github.markzhl.admin.mapper.GateClientMapper;
 import com.github.markzhl.common.constant.UserConstant;
 import com.github.markzhl.common.service.BaseService;
@@ -24,7 +24,7 @@ import com.github.markzhl.common.service.BaseService;
 @Service
 public class GateClientService extends BaseService<GateClientMapper,GateClient> {
     @Autowired
-    private ElementMapper elementMapper;
+    private ResourceMapper resourceMapper;
     @Override
     public void insertSelective(GateClient entity) {
         String secret = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT).encode(entity.getSecret());
@@ -55,7 +55,7 @@ public class GateClientService extends BaseService<GateClientMapper,GateClient> 
         }
     }
 
-    public List<Element> getClientServices(int id) {
-       return elementMapper.selectAuthorityElementByClientId(id+"");
+    public List<Resource> getClientServices(int id) {
+       return resourceMapper.selectAuthorityResourceByClientId(id+"");
     }
 }

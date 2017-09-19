@@ -1,7 +1,5 @@
 package com.github.markzhl.admin.rest;
 
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,10 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.markzhl.admin.entity.Form;
 import com.github.markzhl.admin.service.FormService;
-import com.github.markzhl.admin.vo.AuthorityMenuTree;
 import com.github.markzhl.common.msg.ObjectRestResponse;
 import com.github.markzhl.common.msg.TableResultResponse;
 import com.github.markzhl.common.rest.BaseController;

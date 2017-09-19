@@ -76,24 +76,24 @@ public class GroupController extends BaseController<GroupService, Group> {
         return new ObjectRestResponse().result(baseService.getAuthorityMenu(id)).rel(true);
     }
 
-    @RequestMapping(value = "/{id}/authority/element/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/authority/resource/add", method = RequestMethod.POST)
     @ResponseBody
-    public ObjectRestResponse addElementAuthority(@PathVariable  int id,int menuId, int elementId){
-        baseService.modifyAuthorityElement(id,menuId,elementId);
+    public ObjectRestResponse addResourceAuthority(@PathVariable  int id,int menuId, int resourceId){
+        baseService.modifyAuthorityResource(id,menuId,resourceId);
         return new ObjectRestResponse().rel(true);
     }
 
-    @RequestMapping(value = "/{id}/authority/element/remove", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/authority/resource/remove", method = RequestMethod.POST)
     @ResponseBody
-    public ObjectRestResponse removeElementAuthority(@PathVariable int id,int menuId, int elementId){
-        baseService.removeAuthorityElement(id,menuId,elementId);
+    public ObjectRestResponse removeResourceAuthority(@PathVariable int id,int menuId, int resourceId){
+        baseService.removeAuthorityResource(id,menuId,resourceId);
         return new ObjectRestResponse().rel(true);
     }
 
-    @RequestMapping(value = "/{id}/authority/element", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/authority/resource", method = RequestMethod.GET)
     @ResponseBody
-    public ObjectRestResponse<List<Integer>> addElementAuthority(@PathVariable  int id){
-        return new ObjectRestResponse().result(baseService.getAuthorityElement(id)).rel(true);
+    public ObjectRestResponse<List<Integer>> addResourceAuthority(@PathVariable  int id){
+        return new ObjectRestResponse().result(baseService.getAuthorityResource(id)).rel(true);
     }
 
 }

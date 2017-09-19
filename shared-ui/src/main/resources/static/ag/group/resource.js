@@ -1,13 +1,13 @@
-var authorityElement = {
-    baseUrl: "/back/element",
-    entity: "element",
-    tableId: "elementTable",
-    toolbarId: "elementToolbar",
+var authorityResource = {
+    baseUrl: "/back/resource",
+    entity: "resource",
+    tableId: "resourceTable",
+    toolbarId: "resourceToolbar",
     unique: "id",
     order: "asc",
     currentItem: {}
 };
-authorityElement.columns = function () {
+authorityResource.columns = function () {
     return [{
         checkbox: true
     }, {
@@ -24,7 +24,7 @@ authorityElement.columns = function () {
         title: '方式'
     }];
 };
-authorityElement.queryParams = function (params) {
+authorityResource.queryParams = function (params) {
     if (!params)
         return {
             menuId: group.currentAuthorityMenu.id
@@ -37,17 +37,17 @@ authorityElement.queryParams = function (params) {
     return temp;
 };
 
-authorityElement.init = function () {
-    authorityElement.table = $('#' + authorityElement.tableId).bootstrapTable({
-        url: authorityElement.baseUrl + '/page', //请求后台的URL（*）
+authorityResource.init = function () {
+    authorityResource.table = $('#' + authorityResource.tableId).bootstrapTable({
+        url: authorityResource.baseUrl + '/page', //请求后台的URL（*）
         method: 'get', //请求方式（*）
-        toolbar: '#' + authorityElement.toolbarId, //工具按钮用哪个容器
+        toolbar: '#' + authorityResource.toolbarId, //工具按钮用哪个容器
         striped: true, //是否显示行间隔色
         cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
         pagination: true, //是否显示分页（*）
         sortable: false, //是否启用排序
-        sortOrder: authorityElement.order, //排序方式
-        queryParams: authorityElement.queryParams,//传递参数（*）
+        sortOrder: authorityResource.order, //排序方式
+        queryParams: authorityResource.queryParams,//传递参数（*）
         sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
         pageNumber: 1, //初始化加载第一页，默认第一页
         pageSize: 20, //每页的记录行数（*）
@@ -58,21 +58,21 @@ authorityElement.init = function () {
         showRefresh: false, //是否显示刷新按钮
         minimumCountColumns: 2, //最少允许的列数
         clickToSelect: true, //是否启用点击选中行
-        uniqueId: authorityElement.unique, //每一行的唯一标识，一般为主键列
+        uniqueId: authorityResource.unique, //每一行的唯一标识，一般为主键列
         showToggle: true, //是否显示详细视图和列表视图的切换按钮
         cardView: false, //是否显示详细视图
         detailView: false, //是否显示父子表
-        columns: authorityElement.columns(),
-        onUncheck: authorityElement.onUncheck,
-        onCheck: authorityElement.onCheck,
+        columns: authorityResource.columns(),
+        onUncheck: authorityResource.onUncheck,
+        onCheck: authorityResource.onCheck,
         checkboxHeader: false
-        //onCheckAll: authorityElement.onCheckAll,
-        //onUncheckAll: authorityElement.onUncheckAll
+        //onCheckAll: authorityResource.onCheckAll,
+        //onUncheckAll: authorityResource.onUncheckAll
     });
-    $('#' + authorityElement.tableId).on('load-success.bs.table', function (data) {
-        $.get(group.baseUrl + "/" + group.currentItem.id + "/authority/element", null, function (data) {
+    $('#' + authorityResource.tableId).on('load-success.bs.table', function (data) {
+        $.get(group.baseUrl + "/" + group.currentItem.id + "/authority/resource", null, function (data) {
                 if (data.rel) {
-                    authorityElement.table.bootstrapTable("checkBy", {field: "id", values: data.result});
+                    authorityResource.table.bootstrapTable("checkBy", {field: "id", values: data.result});
                 }
             }
         )
@@ -80,15 +80,15 @@ authorityElement.init = function () {
     });
 };
 
-authorityElement.refresh = function () {
-    authorityElement.table.bootstrapTable("refresh");
+authorityResource.refresh = function () {
+    authorityResource.table.bootstrapTable("refresh");
 }
 ;
-authorityElement.onCheck = function (row, $element) {
+authorityResource.onCheck = function (row, $element) {
     var menuId = group.currentAuthorityMenu.id;
-    $.post(group.baseUrl + "/" + group.currentItem.id + "/authority/element/add", {
+    $.post(group.baseUrl + "/" + group.currentItem.id + "/authority/resource/add", {
         menuId: menuId,
-        elementId: row.id
+        resourceId: row.id
     }, function (data) {
         if (!data.rel) {
             layui.use(['form', 'layedit', 'laydate', 'element'], function () {
@@ -99,14 +99,14 @@ authorityElement.onCheck = function (row, $element) {
     });
 };
 
-authorityElement.onUncheck = function (row, $element) {
+authorityResource.onUncheck = function (row, $element) {
     var menuId = group.currentAuthorityMenu.id;
     $.ajax({
-            url: group.baseUrl + "/" + group.currentItem.id + "/authority/element/remove",
+            url: group.baseUrl + "/" + group.currentItem.id + "/authority/resource/remove",
             type: "POST",
             data: {
                 menuId: menuId,
-                elementId: row.id
+                resourceId: row.id
             },
             success: function (data) {
                 if (!data.rel) {
@@ -121,7 +121,7 @@ authorityElement.onUncheck = function (row, $element) {
     ;
 }
 ;
-//authorityElement.onCheckAll = function (rows) {
+//authorityResource.onCheckAll = function (rows) {
 //    console.log(rows);
 //    var menuId = group.currentAuthorityMenu.id;
 //    var eleIds =[];
@@ -129,11 +129,11 @@ authorityElement.onUncheck = function (row, $element) {
 //        eleIds.push(rows[i].id);
 //    }
 //    //$.ajax({
-//    //        url: group.baseUrl + "/" + group.currentItem.id + "/authority/element/add",
+//    //        url: group.baseUrl + "/" + group.currentItem.id + "/authority/resource/add",
 //    //        type: "POST",
 //    //        data: {
 //    //            menuId: menuId,
-//    //            element: eleIds
+//    //            resource: eleIds
 //    //        },
 //    //        success: function (data) {
 //    //            if (!data.rel) {
@@ -147,18 +147,18 @@ authorityElement.onUncheck = function (row, $element) {
 //    //)
 //    //;
 //};
-//authorityElement.onUncheckAll = function (rows) {
+//authorityResource.onUncheckAll = function (rows) {
 //    var menuId = group.currentAuthorityMenu.id;
 //    var eleIds =[];
 //    for(var i=0;i<rows.length;i++){
 //        eleIds.push(rows[i].id);
 //    }
 //    //$.ajax({
-//    //        url: group.baseUrl + "/" + group.currentItem.id + "/authority/element/remove",
+//    //        url: group.baseUrl + "/" + group.currentItem.id + "/authority/resource/remove",
 //    //        type: "POST",
 //    //        data: {
 //    //            menuId: menuId,
-//    //            element: eleIds
+//    //            resource: eleIds
 //    //        },
 //    //        success: function (data) {
 //    //            if (!data.rel) {

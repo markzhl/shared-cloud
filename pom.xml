@@ -19,11 +19,28 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.2.RELEASE</version>
+        <version>1.5.3.RELEASE</version>
     </parent>
     <properties>
-        <docker.image.prefix>ag</docker.image.prefix>
+    	<shared-cloud.version>1.0-SNAPSHOT</shared-cloud.version>
+        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<commons-io.version>2.5</commons-io.version>
+		<commons-lang3.version>3.6</commons-lang3.version>
+		<docker.image.prefix>ag</docker.image.prefix>
         <docker.plugin.version>0.4.13</docker.plugin.version>
+		<druid.version>1.1.2</druid.version>
+    	<fastjson.version>1.2.33</fastjson.version>
+    	<hystrix.version>1.5.12</hystrix.version>
+    	<jjwt.version>0.6.0</jjwt.version>
+		<jodd-http.version>3.6.7</jodd-http.version>
+		<mapper.version>3.4.0</mapper.version>
+		<mybatis.version>3.4.1</mybatis.version>
+        <mybatis-spring.version>1.3.0</mybatis-spring.version>
+        <mysql-connector-java.version>5.1.30</mysql-connector-java.version>
+		<pagehelper.version>4.1.1</pagehelper.version>
+    	<springfox-swagger2.version>2.7.0</springfox-swagger2.version>
+    	<springloaded.version>1.2.1.RELEASE</springloaded.version>
+        <spring-boot-admin.version>1.5.1</spring-boot-admin.version>
     </properties>
     <modules>
         <module>shared-admin</module>
@@ -49,17 +66,16 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.14</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    <!--依赖管理，用于管理spring-cloud的依赖，其中Camden.SR3是版本号-->
+    <!--依赖管理，用于管理spring-cloud的依赖，其中Dalston.RELEASE是版本号-->
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Camden.SR3</version>
+                <version>Dalston.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -21,14 +21,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.github.markzhl.api.vo.authority.PermissionInfo;
-import com.github.markzhl.api.vo.log.LogInfo;
-import com.github.markzhl.api.vo.user.UserInfo;
 import com.github.markzhl.common.util.ClientUtil;
-import com.github.markzhl.gate.rpc.ILogService;
-import com.github.markzhl.gate.rpc.IUserService;
+import com.github.markzhl.gate.consumer.LogConsumer;
+import com.github.markzhl.gate.consumer.UserConsumer;
 import com.github.markzhl.gate.security.SecurityUser;
 import com.github.markzhl.gate.utils.DBLog;
+import com.github.markzhl.vo.authority.PermissionInfo;
+import com.github.markzhl.vo.log.LogInfo;
+import com.github.markzhl.vo.user.UserInfo;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 
@@ -42,9 +42,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ResourceAccessFilter implements Filter {
     @Autowired
-    private IUserService userService;
+    private UserConsumer userService;
     @Autowired
-    private ILogService logService;
+    private LogConsumer logService;
     @Value("${gate.ignore.startWith}")
     private String startWith;
     @Value("${gate.ignore.contain}")

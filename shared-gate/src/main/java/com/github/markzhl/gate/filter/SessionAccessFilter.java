@@ -19,13 +19,13 @@ import org.springframework.session.SessionRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
 
-import com.github.markzhl.api.vo.authority.PermissionInfo;
-import com.github.markzhl.api.vo.log.LogInfo;
-import com.github.markzhl.api.vo.user.UserInfo;
 import com.github.markzhl.common.util.ClientUtil;
-import com.github.markzhl.gate.rpc.ILogService;
-import com.github.markzhl.gate.rpc.IUserService;
+import com.github.markzhl.gate.consumer.LogConsumer;
+import com.github.markzhl.gate.consumer.UserConsumer;
 import com.github.markzhl.gate.utils.DBLog;
+import com.github.markzhl.vo.authority.PermissionInfo;
+import com.github.markzhl.vo.log.LogInfo;
+import com.github.markzhl.vo.user.UserInfo;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.netflix.zuul.ZuulFilter;
@@ -44,9 +44,9 @@ public class SessionAccessFilter extends ZuulFilter {
     @Autowired
     private SessionRepository<?> repository;
     @Autowired
-    private IUserService userService;
+    private UserConsumer userService;
     @Autowired
-    private ILogService logService;
+    private LogConsumer logService;
 
     @Value("${gate.ignore.startWith}")
     private String startWith;
