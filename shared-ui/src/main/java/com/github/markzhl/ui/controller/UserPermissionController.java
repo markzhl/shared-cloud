@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.markzhl.common.msg.ObjectRestResponse;
-import com.github.markzhl.ui.rpc.UserClient;
+import com.github.markzhl.ui.client.IUserClient;
 
 /**
  * 
@@ -18,7 +18,7 @@ import com.github.markzhl.ui.rpc.UserClient;
 @Controller
 public class UserPermissionController  extends BaseController{
     @Autowired
-    private UserClient userService;
+    private IUserClient userService;
 
     @RequestMapping(value = "/user/system",method = RequestMethod.GET)
     @ResponseBody
@@ -27,7 +27,7 @@ public class UserPermissionController  extends BaseController{
     }
     @RequestMapping(value = "/user/menu",method = RequestMethod.GET)
     @ResponseBody
-    public String getUserMenu(@RequestParam(defaultValue = "-1") Integer parentId){
+    public String getUserMenu(@RequestParam(defaultValue = "-1") Long parentId){
         return userService.getMenusByUsername(getCurrentUserName(),parentId);
     }
     @RequestMapping(value = "/user/unlock", method = RequestMethod.POST)

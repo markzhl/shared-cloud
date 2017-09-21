@@ -40,9 +40,10 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest httpRequest, HttpServletResponse httpResponse, Object handler) throws Exception {
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-        ApiGateSecurity methodAnnotation = methodAnnotation = handlerMethod.getBeanType().getAnnotation(ApiGateSecurity.class);
+        ApiGateSecurity methodAnnotation = handlerMethod.getBeanType().getAnnotation(ApiGateSecurity.class);
         if (methodAnnotation == null)
             methodAnnotation = handlerMethod.getMethodAnnotation(ApiGateSecurity.class);
+        
         String token = httpRequest.getHeader(tokenHead);
         if (methodAnnotation != null) {
         	if(token == null || token.length() == 0){

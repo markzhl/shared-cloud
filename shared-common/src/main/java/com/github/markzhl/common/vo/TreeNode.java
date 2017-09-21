@@ -8,8 +8,8 @@ import java.util.List;
  * @author mark
  */
 public class TreeNode {
-    protected int id;
-    protected int parentId;
+    protected Long id;
+    protected Long parentId;
 
     public List<TreeNode> getChildren() {
         return children;
@@ -21,19 +21,19 @@ public class TreeNode {
 
     List<TreeNode> children = new ArrayList<TreeNode>();
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 

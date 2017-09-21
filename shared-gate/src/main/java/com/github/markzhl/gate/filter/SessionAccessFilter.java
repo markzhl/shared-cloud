@@ -1,6 +1,5 @@
 package com.github.markzhl.gate.filter;
 
-import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.Date;
@@ -20,8 +19,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
 
 import com.github.markzhl.common.util.ClientUtil;
-import com.github.markzhl.gate.consumer.LogConsumer;
-import com.github.markzhl.gate.consumer.UserConsumer;
+import com.github.markzhl.gate.client.ILogClient;
+import com.github.markzhl.gate.client.IUserClient;
 import com.github.markzhl.gate.utils.DBLog;
 import com.github.markzhl.vo.authority.PermissionInfo;
 import com.github.markzhl.vo.log.LogInfo;
@@ -34,9 +33,10 @@ import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
- *
- * @author mark
+ * ${DESCRIPTION}
+ * 权限过滤器。
+ * @author wanghaobin
+ * @create 2017-06-23 8:25
  */
 @Component
 @Slf4j
@@ -44,9 +44,9 @@ public class SessionAccessFilter extends ZuulFilter {
     @Autowired
     private SessionRepository<?> repository;
     @Autowired
-    private UserConsumer userService;
+    private IUserClient userService;
     @Autowired
-    private LogConsumer logService;
+    private ILogClient logService;
 
     @Value("${gate.ignore.startWith}")
     private String startWith;
@@ -81,7 +81,6 @@ public class SessionAccessFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         final String requestUri = request.getRequestURI();
         final String method = request.getMethod();
-        log.debug("IP：{}，访问资源：{}，请求方式：{}", ClientUtil.getClientIp(request),requestUri,method);
         User user = getSessionUser(httpSession);
         String username = null;
         if(user!=null) {
@@ -94,20 +93,13 @@ public class SessionAccessFilter extends ZuulFilter {
         // 不进行拦截的地址
         if (isStartWith(requestUri) || isContains(requestUri)|| isOAuth(requestUri))
             return null;
-        if(username!=null){
-        	List<PermissionInfo> permissionInfos = userService.getPermissionByUsername(username);
-            // 判断资源是否启用权限约束
-            Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
-            if(result.size()>0){
-            	checkAllow(requestUri, method, ctx, username);
-            }
-        }else {
-        	try {
-				ctx.getResponse().sendRedirect("/login");
-			} catch (IOException e) {
-			}
+        List<PermissionInfo> permissionInfos = userService.getAllPermissionInfo();
+        // 判断资源是否启用权限约束
+        Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
+        if(result.size()>0){
+            if(username!=null)
+                checkAllow(requestUri, method, ctx, username);
         }
-        
         return null;
     }
 

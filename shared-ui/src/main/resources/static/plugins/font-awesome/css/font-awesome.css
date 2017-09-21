@@ -1335,7 +1335,7 @@
 .fa-plus-square-o:before {
   content: "\f196";
 }
-.fa-spshared-shuttle:before {
+.fa-spgrc-shuttle:before {
   content: "\f197";
 }
 .fa-slack:before {
@@ -1920,7 +1920,7 @@
 .fa-hand-pointer-o:before {
   content: "\f25a";
 }
-.fa-hand-peshared-o:before {
+.fa-hand-pegrc-o:before {
   content: "\f25b";
 }
 .fa-trademark:before {

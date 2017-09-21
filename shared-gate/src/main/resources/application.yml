@@ -8,11 +8,11 @@ spring:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8
         default-property-inclusion: NON_NULL
-    redis:
-        database: 1
-        host: 172.20.97.63
-        pool:
-            max-active: 20
+#    redis:
+#        database: 1
+#        host: 172.20.97.63
+#        pool:
+#            max-active: 20
 server:
     port: 80 #启动端口
     
@@ -60,18 +60,14 @@ security:
         password: admin
         role: USER
 
-gate:
-    client: 
-        authHeader: access-token
-        authHost: http://localhost:80/apiauth
-    ignore:
-        startWith: /static,/admin,/index,/about,/back
-        contain: .
-    oauth:
-        prefix: /api
+gate: 
+  ignore: 
+    startWith: /static
+    contain: .
+  oauth:
+    prefix: /api
 
-    api:
-        header: access-token  #http 请求头key
-        secret: mySecret   #jwt 加密密钥
-        expiration: 60  # 过期秒数
-        tokenHead: ApiGateToken # 认证token前缀
+  jwt:
+    secret: Xe*g@1jda
+    expiration: 7200
+    header: access-token

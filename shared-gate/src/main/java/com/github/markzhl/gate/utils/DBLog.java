@@ -1,6 +1,6 @@
 package com.github.markzhl.gate.utils;
 
-import com.github.markzhl.gate.consumer.LogConsumer;
+import com.github.markzhl.gate.client.ILogClient;
 import com.github.markzhl.vo.log.LogInfo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,17 +20,17 @@ public class DBLog extends Thread {
     private static DBLog dblog = null;
     private static BlockingQueue<LogInfo> logInfoQueue = new LinkedBlockingQueue<LogInfo>(1024);
 
-    public LogConsumer getLogService() {
+    public ILogClient getLogService() {
         return logService;
     }
 
-    public DBLog setLogService(LogConsumer logService) {
+    public DBLog setLogService(ILogClient logService) {
         if(this.logService==null)
             this.logService = logService;
         return this;
     }
 
-    private LogConsumer logService;
+    private ILogClient logService;
     public static synchronized DBLog getInstance() {
         if (dblog == null) {
             dblog = new DBLog();

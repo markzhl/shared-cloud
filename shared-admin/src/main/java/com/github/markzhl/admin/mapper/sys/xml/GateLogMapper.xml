@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.markzhl.admin.mapper.sys.GateLogMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.github.markzhl.admin.entity.sys.GateLog">
+		<id column="id" property="id" />
+		<result column="menu" property="menu" />
+		<result column="opt" property="opt" />
+		<result column="uri" property="uri" />
+		<result column="crt_time" property="crtTime" />
+		<result column="crt_user" property="crtUser" />
+		<result column="crt_name" property="crtName" />
+		<result column="crt_host" property="crtHost" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, menu, opt, uri, crt_time AS crtTime, crt_user AS crtUser, crt_name AS crtName, crt_host AS crtHost
+    </sql>
+
+</mapper>

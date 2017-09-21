@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.github.markzhl.ui.rpc.UserClient;
+import com.github.markzhl.ui.client.IUserClient;
 
 /**
  * 
@@ -18,95 +18,95 @@ import com.github.markzhl.ui.rpc.UserClient;
 @RequestMapping("")
 public class HomeController extends BaseController{
     @Autowired
-    private UserClient userService;
+    private IUserClient userService;
 
 
     @RequestMapping(value = "index",method = RequestMethod.GET)
     public String index(Map<String,Object> map){
-        map.put("user",userService.getUserByUsername(getCurrentUserName()));
+        map.put("baseUser",userService.getUserByUsername(getCurrentUserName()));
         return "index";
     }
     @RequestMapping(value = "about",method = RequestMethod.GET)
     public String about(){
         return "about";
     }
-    @RequestMapping(value = "user",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseUser",method = RequestMethod.GET)
     public String user(){
-        return "user/list";
+        return "sys/baseUser/list";
     }
-    @RequestMapping(value = "user/edit",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseUser/edit",method = RequestMethod.GET)
     public String userEdit(){
-        return "user/edit";
+        return "sys/baseUser/edit";
     }
-    @RequestMapping(value = "menu",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseMenu",method = RequestMethod.GET)
     public String menu(){
-        return "menu/list";
+        return "sys/baseMenu/list";
     }
-    @RequestMapping(value = "menu/edit",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseMenu/edit",method = RequestMethod.GET)
     public String menuEdit(){
-        return "menu/edit";
+        return "sys/baseMenu/edit";
     }
-    @RequestMapping(value = "group",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseGroup",method = RequestMethod.GET)
     public String group(){
-        return "group/list";
+        return "sys/baseGroup/list";
     }
-    @RequestMapping(value = "group/user",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseGroup/baseUser",method = RequestMethod.GET)
     public String groupUser(){
-        return "group/user";
+        return "sys/baseGroup/baseUser";
     }
-    @RequestMapping(value = "group/authority",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseGroup/baseAuthority",method = RequestMethod.GET)
     public String groupAuthority(){
-        return "group/authority";
+        return "sys/baseGroup/baseAuthority";
     }
-    @RequestMapping(value = "group/edit",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseGroup/edit",method = RequestMethod.GET)
     public String groupEdit(){
-        return "group/edit";
+        return "sys/baseGroup/edit";
     }
-    @RequestMapping(value = "groupType",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseGroupType",method = RequestMethod.GET)
     public String groupType(){
-        return "groupType/list";
+        return "sys/baseGroupType/list";
     }
-    @RequestMapping(value = "groupType/edit",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseGroupType/edit",method = RequestMethod.GET)
     public String groupTypeEdit(){
-        return "groupType/edit";
+        return "sys/baseGroupType/edit";
     }
-    @RequestMapping(value="resource/edit",method = RequestMethod.GET)
+    @RequestMapping(value="sys/baseResource/edit",method = RequestMethod.GET)
     public String resourceEdit(){
-        return "resource/edit";
+        return "sys/baseResource/edit";
     }
-    @RequestMapping(value = "gateClient",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/gateClient",method = RequestMethod.GET)
     public String gateClient(){
-        return "gateClient/list";
+        return "sys/gateClient/list";
     }
-    @RequestMapping(value = "gateClient/edit",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/gateClient/edit",method = RequestMethod.GET)
     public String gateClientEdit(){
-        return "gateClient/edit";
+        return "sys/gateClient/edit";
     }
-    @RequestMapping(value = "gateClient/authority",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/gateClient/baseAuthority",method = RequestMethod.GET)
     public String gateClientAuthority(){
-        return "gateClient/authority";
+        return "sys/gateClient/baseAuthority";
     }
-    @RequestMapping(value = "gateLog",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/gateLog",method = RequestMethod.GET)
     public String gateLog(){
-        return "gateLog/list";
+        return "sys/gateLog/list";
     }
-    @RequestMapping(value = "service",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/gateService",method = RequestMethod.GET)
     public String service(){
-        return "service/list";
+        return "sys/gateService/list";
     }
     
-    @RequestMapping(value = "form",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseForm",method = RequestMethod.GET)
     public String form(){
-        return "form/list";
+        return "sys/baseForm/list";
     }
     
-    @RequestMapping(value = "form/design",method = RequestMethod.GET)
+    @RequestMapping(value = "sys/baseForm/design",method = RequestMethod.GET)
     public String design(){
-        return "form/design";
+        return "sys/baseForm/design";
     }
-    @RequestMapping(value="form/edit",method = RequestMethod.GET)
+    @RequestMapping(value="sys/baseForm/edit",method = RequestMethod.GET)
     public String formEdit(){
-        return "form/edit";
+        return "sys/baseForm/edit";
     }
     
     

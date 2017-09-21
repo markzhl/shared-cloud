@@ -34,8 +34,8 @@
     	<jjwt.version>0.6.0</jjwt.version>
 		<jodd-http.version>3.6.7</jodd-http.version>
 		<mapper.version>3.4.0</mapper.version>
-		<mybatis.version>3.4.1</mybatis.version>
-        <mybatis-spring.version>1.3.0</mybatis-spring.version>
+		<mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
+		<mybatisplus.version>2.1.2</mybatisplus.version>
         <mysql-connector-java.version>5.1.30</mysql-connector-java.version>
 		<pagehelper.version>4.1.1</pagehelper.version>
     	<springfox-swagger2.version>2.7.0</springfox-swagger2.version>

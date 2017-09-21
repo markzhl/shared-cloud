@@ -44,14 +44,3 @@ hystrix:
           thread:
             timeoutInMilliseconds: 5000
 
-
-#只有调用开启了@ApiGateSecurity的api接口时才需要
-gate:
-  client:
-    clientId: admin-ui
-    secret: test
-    tokenHead: ApiGateToken
-  api: 
-    authHost: http://localhost:80/apiauth
-    authHeader: access-token
-    

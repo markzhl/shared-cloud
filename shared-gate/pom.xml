@@ -23,11 +23,6 @@
             <version>${shared-cloud.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.markzhl</groupId>
-            <artifactId>shared-gate-agent</artifactId>
-            <version>${shared-cloud.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
